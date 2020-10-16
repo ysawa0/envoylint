@@ -1,0 +1,54 @@
+service: envoylint
+
+plugins:
+  - serverless-python-requirements
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+
+  environment:
+    PATH: $PATH:/opt/lintubuntu
+
+package:
+  exclude:
+    - ./.git/**
+    - ./.idea/**
+    - ./tmp/**
+    - ./lintamz/**
+    - ./lintmac/**
+    - ./lintubuntu/**
+#    - ./lib/**
+
+layers:
+  ctclamz:
+    path: ./lintamz/ # required, path to layer contents on disk
+    name: envoylint # optional, Deployed Lambda layer name
+    description: envoy config check tool built on amazon linux 2 # optional, Description to publish to AWS
+    retain: false # optional, false by default. If true, layer versions are not deleted as new ones are created
+    compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
+      - go1.x
+      - python3.8
+  libatomic:
+    path: ./lib/ # required, path to layer contents on disk
+    name: libatomic # optional, Deployed Lambda layer name
+    description: libatomic built on amazon linux # optional, Description to publish to AWS
+    retain: false # optional, false by default. If true, laRyer versions are not deleted as new ones are created
+    compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
+      - go1.x
+      - python3.8
+
+functions:
+  envlint:
+    handler: main.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: CtclamzLambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: linter
+          method: post
+          cors: true

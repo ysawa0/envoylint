@@ -237,6 +237,4 @@ release.sh
 
 backend/bin/*
 backend/lib/*
-backend/libamz/*
-backend/libmac/*
-backend/libubuntu/*
+backend/lint*/*
