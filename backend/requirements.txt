@@ -1,2 +1,2 @@
-pprintpp
-pendulum
+pendulum>=2.1.0
+pprintpp>=0.4.0

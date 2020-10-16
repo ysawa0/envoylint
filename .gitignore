@@ -236,5 +236,5 @@ release.sh
 
 
 backend/bin/*
-backend/lib/*
+# backend/lib/*
 backend/lint*/*
