@@ -35,6 +35,7 @@ def lambda_handler(event, context):
         "err": rp.stderr.decode(),
         "code": rp.returncode,
     }
+    os.remove(write_to)
     return as_api_gateway_response(res, 200)
 
 
