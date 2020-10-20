@@ -39,6 +39,8 @@ const App = () => (
                                 <a href={"https://www.envoyproxy.io/"}>Envoy</a> config and
                                 validates it for you.
                             </p>
+                            Inspired by:
+                            <Tweet tweetId="1306060212244111360"/>
                         </Card>
                         <Card
                             title="How does it work?"
