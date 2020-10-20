@@ -6,7 +6,6 @@ import Linter from "./linter"
 
 import {Image, Card, Layout, Menu} from 'antd'
 import {HomeOutlined} from '@ant-design/icons'
-import {Tweet} from 'react-twitter-widgets'
 
 const {Header, Content, Footer} = Layout
 
@@ -40,8 +39,6 @@ const App = () => (
                                 <a href={"https://www.envoyproxy.io/"}>Envoy</a> config and
                                 validates it for you.
                             </p>
-                            Inspired by:
-                            <Tweet tweetId="1306060212244111360"/>
                         </Card>
                         <Card
                             title="How does it work?"
@@ -96,7 +93,7 @@ const App = () => (
                             headStyle={{fontSize: "20px"}}
                         >
                             <p>
-                                It will be open sourced once I have some time to clean up the code.
+                                <a href={"https://github.com/ysawa0/envoylint"}>https://github.com/ysawa0/envoylint</a>
                             </p>
                         </Card>
                         <Card
@@ -108,8 +105,7 @@ const App = () => (
                         >
                             <p>
                                 Shoot me a message{" "}
-                                <a href={"https://twitter.com/yukisww"}>@yukisww</a> or email
-                                yuki@yukisawa.com
+                                <a href={"https://twitter.com/yukisww"}>@yukisww</a>
                             </p>
                         </Card>
                     </div>

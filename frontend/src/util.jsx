@@ -8,9 +8,10 @@ static_resources:
           port_value: 9999
       filter_chains:
         - filters:
-            - name: envoy.http_connection_manager
-              config:
-                codec_type: auto
+            - name: envoy.filters.network.http_connection_manager
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+                codec_type: AUTO
                 stat_prefix: ingress
                 route_config:
                   name: ingress
@@ -26,8 +27,8 @@ static_resources:
                             body:
                               inline_string: "Hello World"
                 http_filters:
-                  - name: envoy.router
-                    config: {}
+                  - name: envoy.filters.http.router
+                    typed_config: {}
 admin:
   access_log_path: "/dev/null"
   address:
