@@ -1,7 +1,8 @@
 # envoylint
 
-## How to build config_load_check_tool
-Spin up a EC2 instance (t3a.xlarge or larger recommended for manageable build time and enough memory)
+## How to build config_load_check_tool for Lambda
+Spin up a EC2 instance using Amazon Linux (t3a.xlarge or larger recommended for manageable build time and enough memory)
+
 Then run
 ```
 sudo yum update -y; sudo yum install git tmux -y; git clone https://github.com/envoyproxy/envoy.git
@@ -16,3 +17,4 @@ cd envoy; tmux new; ./ci/run_envoy_docker.sh 'tail -f /dev/null'
 git clone https://github.com/envoyproxy/envoy.git; cd envoy
 bazel build //test/tools/config_load_check:config_load_check_tool
 ```
+
