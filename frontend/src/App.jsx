@@ -6,6 +6,7 @@ import Linter from "./linter"
 
 import {Image, Card, Layout, Menu} from 'antd'
 import {HomeOutlined} from '@ant-design/icons'
+import {Tweet} from 'react-twitter-widgets'
 
 const {Header, Content, Footer} = Layout
 
