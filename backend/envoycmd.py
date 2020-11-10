@@ -16,7 +16,7 @@ def lambda_handler(event, context):
     if is_local:
         cmd = "envoy"
         write_to = f"conf/{u}.yaml"
-        read_from = "conf"
+        read_from = "./tmp/mock.yaml"
     else:
         cmd = "/opt/envoy"
         write_to = f"/tmp/{u}/conf.yaml"
@@ -28,6 +28,7 @@ def lambda_handler(event, context):
         f.write(conf)
 
     cmds = [cmd, "--mode", "validate", "-c", read_from + "/conf.yaml"]
+    cmds += ["--service-node", "mock", "--service-cluster", "mockcluster"]
     rp = subprocess.run(cmds, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     res = {
         "out": rp.stdout.decode(),
