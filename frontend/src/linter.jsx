@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import {Button, Divider} from "antd"
 import axios from "axios"
-import {Form, Input, Row, Col} from "antd"
+import { Form, Input, Row, Col, Radio } from "antd"
 
 import {FireTwoTone, LoadingOutlined, CloseCircleTwoTone, CheckCircleTwoTone} from '@ant-design/icons'
 import {mockConf} from './util'
@@ -25,15 +25,24 @@ export default class Linter extends Component {
         fail: false,
         load: false,
         error: false,
+        apiVer: 'v1160',
     }
+
     formRef = React.createRef()
+    radioRef = React.createRef()
+
     handleSubmit = e => {
         e.preventDefault()
         this.setState({load: true})
         this.setState({pass: false, fail: false, error: false})
         const conf = this.state.conf
         const data = {conf: conf}
-        const url = 'https://wco1jydmml.execute-api.us-east-1.amazonaws.com/dev/linter'
+        let url = ""
+        if (this.state.apiVer === "clct") {
+            url = `https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod/clct`
+        } else {
+            url = `https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod/envoy${this.state.apiVer}`
+        }
         axios.post(url, data, {timeout: 40000})
             .then(res => {
                 let out = res.data.out.split("\n")
@@ -89,75 +98,81 @@ export default class Linter extends Component {
         this.setState({conf: this.formRef.current.getFieldValue("envoy-conf")})
     }
 
+    changeAPI = e => {
+        this.setState({apiVer: this.formRef.current.getFieldValue("api-ver")})
+    }
+
     render() {
         return (
-            <>
-                <Row gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
-                    <Col className="gutter-row" span={12}>
-                        <Divider orientation="left">envoy conf</Divider>
-                        <Form
-                            {...layout}
-                            name="nest-messages"
-                            ref={this.formRef}
-                        >
-                            <Form.Item
-                                name="envoy-conf"
-                            >
-                                <Input.TextArea
-                                    rows={30}
-                                    value={this.state.conf}
-                                    onChange={this.handleChange}
-                                    defaultValue={mockConf}
-                                />
-                            </Form.Item>
-                            <Form.Item wrapperCol={{...layout.wrapperCol, offset: 0}}>
-                                <Button
-                                    type="primary"
-                                    htmlType="submit"
-                                    onClick={this.handleSubmit}
-                                >
-                                    Validate
-                                </Button>
-                            </Form.Item>
-                        </Form>
-                    </Col>
-                    <Col className="gutter-row" span={12}>
-                        <Divider orientation="left">results</Divider>
-                        <TextArea rows={30} value={this.state.out}/>
-                    </Col>
-                </Row>
-                <Row gutter={{xs: 8, sm: 16, md: 24, lg: 32}} className="centerh">
-                    <Col>
-                        <div
-                            style={{
-                                fontSize: "120px",
-                            }}
-                        >
-                            <LoadingOutlined
-                                style={!this.state.load ? {display: "none"} : {}}
-                            />
-                            <div style={!this.state.pass ? {display: "none"} : {}}>
-                                <CheckCircleTwoTone
-                                    twoToneColor="#52c41a"
-                                />
-                                {" "}config passed!
-                            </div>
-                            <div style={!this.state.fail ? {display: "none"} : {}}>
-                                <CloseCircleTwoTone
-                                    twoToneColor="#eb2f96"
-                                />
-                                {" "}config failed validation
-                            </div>
-                            <div style={!this.state.error ? {display: "none"} : {}}>
-                                <FireTwoTone
-                                    twoToneColor="#eb2f96"
-                                />
-                                api error
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
-            </>
+          <>
+            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+              <Col className="gutter-row" span={12}>
+                <Divider orientation="left">envoy conf</Divider>
+                <Form {...layout} name="nest-messages" ref={this.formRef}>
+                  <Form.Item name="envoy-conf">
+                    <Input.TextArea
+                      rows={30}
+                      value={this.state.conf}
+                      onChange={this.handleChange}
+                      defaultValue={mockConf}
+                    />
+                  </Form.Item>
+                  <Form.Item name="api-ver">
+                    <Radio.Group
+                      name="api-ver"
+                      defaultValue="v1160"
+                      buttonStyle="solid"
+                      onChange={this.changeAPI}
+                      value={this.state.apiVer}
+                    >
+                      <Radio.Button value="v1160">v1.16.0</Radio.Button>
+                      {/* <Radio.Button value="v1152">v1.15.2</Radio.Button> */}
+                      <Radio.Button value="v1145">v1.14.5</Radio.Button>
+                      <Radio.Button value="v1127">v1.12.7</Radio.Button>
+                      <Radio.Button value="clct">config_load_check_tool</Radio.Button>
+                    </Radio.Group>
+                  </Form.Item>
+                  <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      onClick={this.handleSubmit}
+                    >
+                      Validate
+                    </Button>
+                  </Form.Item>
+                </Form>
+              </Col>
+              <Col className="gutter-row" span={12}>
+                <Divider orientation="left">results</Divider>
+                <TextArea rows={30} value={this.state.out} />
+              </Col>
+            </Row>
+            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="centerh">
+              <Col>
+                <div
+                  style={{
+                    fontSize: "120px",
+                  }}
+                >
+                  <LoadingOutlined
+                    style={!this.state.load ? { display: "none" } : {}}
+                  />
+                  <div style={!this.state.pass ? { display: "none" } : {}}>
+                    <CheckCircleTwoTone twoToneColor="#52c41a" /> config passed!
+                  </div>
+                  <div style={!this.state.fail ? { display: "none" } : {}}>
+                    <CloseCircleTwoTone twoToneColor="#eb2f96" /> config failed
+                    validation
+                  </div>
+                  <div style={!this.state.error ? { display: "none" } : {}}>
+                    <FireTwoTone twoToneColor="#eb2f96" />
+                    api error
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </>
         );
     }
 }
