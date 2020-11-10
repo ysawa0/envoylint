@@ -18,3 +18,8 @@ git clone https://github.com/envoyproxy/envoy.git; cd envoy
 bazel build //test/tools/config_load_check:config_load_check_tool
 ```
 
+## How to get Envoy binary for Lambda Layer
+```
+docker run envoyproxy/envoy:v1.15.2
+docker cp $CONTAINERID:/usr/local/bin/envoy .
+```
