@@ -117,7 +117,7 @@ export default class Linter extends Component {
                       defaultValue={mockConf}
                     />
                   </Form.Item>
-                  <Form.Item name="api-ver">
+                  <Form.Item name="api-ver" label="Validate with">
                     <Radio.Group
                       name="api-ver"
                       defaultValue="v1160"
@@ -129,7 +129,9 @@ export default class Linter extends Component {
                       {/* <Radio.Button value="v1152">v1.15.2</Radio.Button> */}
                       <Radio.Button value="v1145">v1.14.5</Radio.Button>
                       <Radio.Button value="v1127">v1.12.7</Radio.Button>
-                      <Radio.Button value="clct">config_load_check_tool</Radio.Button>
+                      <Radio.Button value="clct">
+                        config_load_check_tool
+                      </Radio.Button>
                     </Radio.Group>
                   </Form.Item>
                   <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
