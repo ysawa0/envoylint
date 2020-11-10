@@ -16,11 +16,56 @@ package:
     - ./.git/**
     - ./.idea/**
     - ./tmp/**
+    - ./bin/**
     - ./lintamz/**
     - ./lintmac/**
     - ./lintubuntu/**
 
 layers:
+  Envoyv1160:
+    path: ./bin/envoy-1.16.0/
+    name: envoyv1160
+    description: Envoy binary from envoyproxy/envoy-1.16.0
+    retain: false
+    compatibleRuntimes:
+      - go1.x
+      - python3.8
+      - python3.7
+      - python3.6
+
+  Envoyv1152:
+    path: ./bin/envoy-1.15.2/
+    name: envoyv1152
+    description: Envoy binary from envoyproxy/envoy:v1.15.2
+    retain: false
+    compatibleRuntimes:
+      - go1.x
+      - python3.8
+      - python3.7
+      - python3.6
+
+  Envoyv1145:
+    path: ./bin/envoy-1.14.5/
+    name: envoyv1145
+    description: Envoy binary from envoyproxy/envoy:v1.14.5
+    retain: false
+    compatibleRuntimes:
+      - go1.x
+      - python3.8
+      - python3.7
+      - python3.6
+
+  Envoyv1127:
+    path: ./bin/envoy-1.12.7/
+    name: envoyv1127
+    description: Envoy binary from envoyproxy/envoy:v1.12.7
+    retain: false
+    compatibleRuntimes:
+      - go1.x
+      - python3.8
+      - python3.7
+      - python3.6
+
   ctclamz:
     path: ./lintamz/ # required, path to layer contents on disk
     name: config_load_check_tool_amzlinux # optional, Deployed Lambda layer name
@@ -53,6 +98,58 @@ functions:
       - { Ref: LibatomicLambdaLayer }
     events:
       - http:
-          path: linter
+          path: clct
+          method: post
+          cors: true
+
+  envoyv1160:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1160LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1160
+          method: post
+          cors: true
+
+  envoyv1152:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1152LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1152
+          method: post
+          cors: true
+
+  envoyv1145:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1145LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1145
+          method: post
+          cors: true
+
+  envoyv1127:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1127LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1127
           method: post
           cors: true
