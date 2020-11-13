@@ -128,6 +128,7 @@ export default class Linter extends Component {
                       <Radio.Button value="v1160">v1.16.0</Radio.Button>
                       {/* <Radio.Button value="v1152">v1.15.2</Radio.Button> */}
                       <Radio.Button value="v1145">v1.14.5</Radio.Button>
+                      <Radio.Button value="v1134">v1.13.4</Radio.Button>
                       <Radio.Button value="v1127">v1.12.7</Radio.Button>
                       <Radio.Button value="clct">
                         config_load_check_tool

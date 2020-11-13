@@ -55,6 +55,17 @@ layers:
       - python3.7
       - python3.6
 
+  Envoyv1134:
+    path: ./bin/envoy-1.13.4/
+    name: envoyv1134
+    description: Envoy binary from envoyproxy/envoy:v1.13.4
+    retain: false
+    compatibleRuntimes:
+      - go1.x
+      - python3.8
+      - python3.7
+      - python3.6
+
   Envoyv1127:
     path: ./bin/envoy-1.12.7/
     name: envoyv1127
@@ -116,6 +127,7 @@ functions:
           cors: true
 
   envoyv1152:
+    runtime: python3.6
     handler: envoycmd.lambda_handler
     timeout: 30
     memorySize: 256
@@ -138,6 +150,19 @@ functions:
     events:
       - http:
           path: envoyv1145
+          method: post
+          cors: true
+
+  envoyv1134:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1134LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1134
           method: post
           cors: true
 
