@@ -1,5 +1,22 @@
 # envoylint
 
+# Frontend
+Deployed via Netlify
+```
+cd frontend
+yarn install
+yarn start
+```
+
+# Backend
+Deploy via Serverless Framework to AWS Lambda
+```
+cd backend
+npm install -g serverless
+sls plugin install -n serverless-python-requirements
+sls deploy --stage dev
+````
+
 ## How to build config_load_check_tool for Lambda
 Spin up a EC2 instance using Amazon Linux (t3a.xlarge or larger recommended for manageable build time and enough memory)
 
