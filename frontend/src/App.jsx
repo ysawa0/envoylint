@@ -40,8 +40,8 @@ const App = () => (
                                 <a href={"https://www.envoyproxy.io/"}>Envoy</a> config and
                                 validates it for you.
                             </p>
-                            Inspired by:
-                            <Tweet tweetId="1306060212244111360"/>
+                            {/* Inspired by:
+                            <Tweet tweetId="1306060212244111360"/> */}
                         </Card>
                         <Card
                             title="How does it work?"
@@ -65,7 +65,7 @@ const App = () => (
                                 very very large configs will reach that.
                             </p>
                         </Card>
-                        <Card
+                        {/* <Card
                             title="Why run it on AWS Lambda?"
                             className="aboutcards"
                             bordered={true}
@@ -75,7 +75,7 @@ const App = () => (
                             <p>
                                 For fun and also for that sweet free 1 million requests a month.
                             </p>
-                        </Card>
+                        </Card> */}
                         <Card
                             title="Do you save any data?"
                             className="aboutcards"
