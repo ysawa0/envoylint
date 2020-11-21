@@ -61,8 +61,7 @@ const App = () => (
                                 </a>{" "}
                                 and prints the results.
                                 <br/>
-                                There is a 30 second timeout on the linter due to API Gateway limitations. So currently,
-                                very very large configs will reach that.
+                                {/* There is a 30 second timeout on the linter due to API Gateway limitations. */}
                             </p>
                         </Card>
                         {/* <Card
