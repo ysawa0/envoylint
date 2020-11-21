@@ -4,7 +4,7 @@ import axios from "axios"
 import { Form, Input, Row, Col, Radio } from "antd"
 
 import {FireTwoTone, LoadingOutlined, CloseCircleTwoTone, CheckCircleTwoTone} from '@ant-design/icons'
-import {mockConf} from './util'
+import {mockConf, linterBaseUrl} from './util'
 
 
 const {TextArea} = Input
@@ -39,9 +39,9 @@ export default class Linter extends Component {
         const data = {conf: conf}
         let url = ""
         if (this.state.apiVer === "clct") {
-            url = `https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod/clct`
+            url = `${linterBaseUrl}/clct`;
         } else {
-            url = `https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod/envoy${this.state.apiVer}`
+            url = `${linterBaseUrl}/envoy${this.state.apiVer}`;
         }
         axios.post(url, data, {timeout: 40000})
             .then(res => {
@@ -179,4 +179,3 @@ export default class Linter extends Component {
         );
     }
 }
-
