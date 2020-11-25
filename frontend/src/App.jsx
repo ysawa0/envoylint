@@ -6,7 +6,7 @@ import Linter from "./linter"
 
 import {Image, Card, Layout, Menu} from 'antd'
 import {HomeOutlined} from '@ant-design/icons'
-// import {Tweet} from 'react-twitter-widgets'
+import {Tweet} from 'react-twitter-widgets'
 
 const {Header, Content, Footer} = Layout
 
@@ -42,8 +42,7 @@ const App = () => (
                 <a href={"https://www.envoyproxy.io/"}>Envoy</a> config and
                 validates it for you.
               </p>
-              {/* Inspired by:
-                            <Tweet tweetId="1306060212244111360"/> */}
+                            <Tweet tweetId="1306060212244111360"/>
             </Card>
             <Card
               title="How does it work?"
