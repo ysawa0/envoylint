@@ -1,4 +1,5 @@
 # envoylint
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5fb8f73f-4b59-4ac1-8916-7b63e7182aec/deploy-status)](https://app.netlify.com/sites/dazzling-mahavira-26b329/deploys)
 
 # Frontend
 Deployed via Netlify
