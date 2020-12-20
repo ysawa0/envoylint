@@ -120,11 +120,12 @@ export default class Linter extends Component {
                   <Form.Item name="api-ver" label="Validate with">
                     <Radio.Group
                       name="api-ver"
-                      defaultValue="v1160"
+                      defaultValue="v1162"
                       buttonStyle="solid"
                       onChange={this.changeAPI}
                       value={this.state.apiVer}
                     >
+                      <Radio.Button value="v1162">v1.16.2</Radio.Button>
                       <Radio.Button value="v1160">v1.16.0</Radio.Button>
                       {/* <Radio.Button value="v1152">v1.15.2</Radio.Button> */}
                       <Radio.Button value="v1145">v1.14.5</Radio.Button>

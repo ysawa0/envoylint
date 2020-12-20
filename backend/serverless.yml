@@ -22,6 +22,17 @@ package:
     - ./lintubuntu/**
 
 layers:
+  Envoyv1162:
+    path: ./bin/envoy-1.16.2/
+    name: envoyv1160
+    description: Envoy binary from envoyproxy/envoy-1.16.2
+    retain: false
+    compatibleRuntimes:
+      - go1.x
+      - python3.8
+      - python3.7
+      - python3.6
+
   Envoyv1160:
     path: ./bin/envoy-1.16.0/
     name: envoyv1160
@@ -110,6 +121,19 @@ functions:
     events:
       - http:
           path: clct
+          method: post
+          cors: true
+
+  envoyv1162:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1162LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1162
           method: post
           cors: true
 
