@@ -17,11 +17,10 @@ const logo = require("./img/envoy-horizontal-color.svg");
 const App = () => {
   const { trackPageView } = useMatomo();
 
-  // Track page view
   React.useEffect(() => {
     trackPageView();
   }, []);
-  
+
   return (
     <Layout className="layout" style={{ backgroundColor: "#1a1b1e" }}>
       <Header>
