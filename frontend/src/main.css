@@ -1,10 +1,10 @@
 .centerh {
-    /*border: 1px solid red;*/
-    /*width:100%*/
-    display: flex;
-    justify-content: center;
+  /*border: 1px solid red;*/
+  /*width:100%*/
+  display: flex;
+  justify-content: center;
 }
 
 .aboutcards {
-    font-size: 20px;
+  font-size: 20px;
 }

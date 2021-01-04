@@ -1,4 +1,3 @@
-
 export const mockConf = `# TRY ME!
 static_resources:
   listeners:
@@ -35,6 +34,7 @@ admin:
     socket_address:
       address: 0.0.0.0
       port_value: 8001
-`
+`;
 
-export const linterBaseUrl = 'https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod'
+export const linterBaseUrl =
+  "https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod";

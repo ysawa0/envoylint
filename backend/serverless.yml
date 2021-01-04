@@ -2,7 +2,7 @@ service: envoylint
 
 plugins:
   - serverless-python-requirements
-frameworkVersion: '2'
+frameworkVersion: "2"
 
 provider:
   name: aws
