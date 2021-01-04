@@ -18,7 +18,7 @@ const instance = createInstance({
   },
   linkTracking: true, // optional, default value: true
   configurations: {
-    setSecureCookie: true,
+    // setSecureCookie: true,
     setRequestMethod: "POST",
   },
 });
