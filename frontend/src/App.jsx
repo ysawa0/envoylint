@@ -8,6 +8,15 @@ import {Image, Card, Layout, Menu} from 'antd'
 import {HomeOutlined} from '@ant-design/icons'
 import {Tweet} from 'react-twitter-widgets'
 
+import { useMatomo } from "@datapunt/matomo-tracker-react";
+
+const { trackPageView } = useMatomo();
+
+// Track page view
+React.useEffect(() => {
+  trackPageView();
+}, []);
+
 const {Header, Content, Footer} = Layout
 
 

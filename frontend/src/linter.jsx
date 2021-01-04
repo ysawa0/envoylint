@@ -6,6 +6,9 @@ import { Form, Input, Row, Col, Radio } from "antd"
 import {FireTwoTone, LoadingOutlined, CloseCircleTwoTone, CheckCircleTwoTone} from '@ant-design/icons'
 import {mockConf, linterBaseUrl} from './util'
 
+import { useMatomo } from "@datapunt/matomo-tracker-react";
+
+const { trackEvent } = useMatomo();
 
 const {TextArea} = Input
 const layout = {
@@ -43,6 +46,9 @@ export default class Linter extends Component {
         } else {
             url = `${linterBaseUrl}/envoy${this.state.apiVer}`;
         }
+
+        trackEvent({ category: "lint", action: this.state.apiVer })
+
         axios.post(url, data, {timeout: 40000})
             .then(res => {
                 let out = res.data.out.split("\n")
