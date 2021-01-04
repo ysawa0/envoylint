@@ -17,10 +17,11 @@ const logo = require("./img/envoy-horizontal-color.svg");
 const App = () => {
   const { trackPageView } = useMatomo();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line
   React.useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
     trackPageView();
+    // eslint-disable-next-line
   }, []);
 
   return (
