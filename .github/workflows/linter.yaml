@@ -42,7 +42,7 @@ jobs:
         uses: docker://github/super-linter:v2.2.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: master
+          DEFAULT_BRANCH: main
           VALIDATE_YAML: true
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_PYTHON: false
