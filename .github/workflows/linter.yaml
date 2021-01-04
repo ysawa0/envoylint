@@ -1,4 +1,3 @@
----
 #############################
 # Workflows for native GH actions
 # Lint YAMLs using GH Super Linter based on .yaml-lint.yml
@@ -15,7 +14,7 @@ name: Lint YAML
 #############################
 on:
   pull_request:
-    branches: [master]
+    branches: [master, main]
     types: [synchronize, opened, reopened, ready_for_review]
   # push:
   #   branches-ignore: [master]

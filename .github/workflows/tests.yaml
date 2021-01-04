@@ -1,4 +1,3 @@
----
 #############################
 # Workflow to run pytest and pre-commit hooks
 #############################
@@ -9,7 +8,7 @@ name: Pre-Commits
 #############################
 on:
   pull_request:
-    branches: [master]
+    branches: [master, main]
     types: [synchronize, opened, reopened, ready_for_review]
 
 jobs:
