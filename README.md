@@ -4,7 +4,9 @@
 
 # Frontend
 
-Deployed via Netlify
+The frontend is a static React site deployed via Netlify. Netlify is synced to this repo.
+
+The site calls the Lamba backend to do the config validation.
 
 ```
 cd frontend
@@ -14,7 +16,8 @@ yarn start
 
 # Backend
 
-Deploy via Serverless Framework to AWS Lambda
+Deploy via Serverless Framework to AWS Lambda.
+Each Lambda calls an Envoy binary
 
 ```
 cd backend

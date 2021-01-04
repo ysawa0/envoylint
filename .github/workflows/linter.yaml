@@ -44,5 +44,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
           VALIDATE_YAML: true
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_PYTHON: false
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_PYTHON: true
