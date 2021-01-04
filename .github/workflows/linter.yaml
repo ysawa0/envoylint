@@ -1,48 +1,48 @@
-#############################
-# Workflows for native GH actions
-# Lint YAMLs using GH Super Linter based on .yaml-lint.yml
-# label PR based on labeler.yml
-#############################
-name: Lint YAML
+# #############################
+# # Workflows for native GH actions
+# # Lint YAMLs using GH Super Linter based on .yaml-lint.yml
+# # label PR based on labeler.yml
+# #############################
+# name: Lint YAML
 
-# Documentation for Linter:
-# https://github.com/github/super-linter/blob/master/docs/disabling-linters.md#yaml
-# https://yamllint.readthedocs.io/en/stable/rules.html
+# # Documentation for Linter:
+# # https://github.com/github/super-linter/blob/master/docs/disabling-linters.md#yaml
+# # https://yamllint.readthedocs.io/en/stable/rules.html
 
-#############################
-# Start the job on all push #
-#############################
-on:
-  pull_request:
-    branches: [master, main]
-    types: [synchronize, opened, reopened, ready_for_review]
-  push:
-    branches: [master, main]
-  # Remove the line above to run when pushing to master
+# #############################
+# # Start the job on all push #
+# #############################
+# on:
+#   pull_request:
+#     branches: [master, main]
+#     types: [synchronize, opened, reopened, ready_for_review]
+#   # push:
+#   #   branches-ignore: [master]
+#   # Remove the line above to run when pushing to master
 
-jobs:
-  lintyaml:
-    runs-on: ubuntu-latest # Set the agent to run on
+# jobs:
+#   lintyaml:
+#     runs-on: ubuntu-latest # Set the agent to run on
 
-    steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 0
+#     steps:
+#       ##########################
+#       # Checkout the code base #
+#       ##########################
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#         with:
+#           # Full git history is needed to get a proper list of changed files within `super-linter`
+#           fetch-depth: 0
 
-      ################################
-      # Run Linter against code base #
-      ################################
-      - name: Lint YAML
-        # uses: docker://github/super-linter:v3.14.3
-        uses: docker://github/super-linter:v2.2.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: main
-          VALIDATE_YAML: true
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_PYTHON: false
+#       ################################
+#       # Run Linter against code base #
+#       ################################
+#       - name: Lint YAML
+#         # uses: docker://github/super-linter:v3.14.3
+#         uses: docker://github/super-linter:v2.2.2
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           DEFAULT_BRANCH: main
+#           VALIDATE_YAML: true
+#           VALIDATE_ALL_CODEBASE: false
+#           VALIDATE_PYTHON: false
