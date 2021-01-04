@@ -34,6 +34,8 @@ export default class Linter extends Component {
     apiVer: "v1160",
   };
 
+  trackEvent = useMatomo();
+
   formRef = React.createRef();
   radioRef = React.createRef();
 
@@ -50,7 +52,6 @@ export default class Linter extends Component {
       url = `${linterBaseUrl}/envoy${this.state.apiVer}`;
     }
 
-    const { trackEvent } = useMatomo();
     trackEvent({ category: "lint", action: this.state.apiVer });
 
     axios
