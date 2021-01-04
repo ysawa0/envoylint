@@ -9,9 +9,9 @@ import {
   CloseCircleTwoTone,
   CheckCircleTwoTone,
 } from "@ant-design/icons";
-import { mockConf, linterBaseUrl } from "./util";
-
 import { useMatomo } from "@datapunt/matomo-tracker-react";
+
+import { mockConf, linterBaseUrl } from "./util";
 
 const { TextArea } = Input;
 const layout = {
@@ -24,16 +24,6 @@ const layout = {
 };
 
 const Linter = () => {
-  // state = {
-  //   conf: mockConf,
-  //   out: "",
-  //   pass: false,
-  //   fail: false,
-  //   load: false,
-  //   error: false,
-  //   apiVer: "v1160",
-  // };
-
   const formRef = React.createRef();
   // const radioRef = React.createRef();
   const [conf, setConf] = useState(mockConf);
@@ -57,6 +47,7 @@ const Linter = () => {
     } else {
       url = `${linterBaseUrl}/envoy${apiVer}`;
     }
+    trackEvent({ category: "lint", action: apiVer });
 
     axios
       .post(url, data, { timeout: 40000 })
@@ -120,9 +111,6 @@ const Linter = () => {
   };
 
   const { trackEvent } = useMatomo();
-  const handleOnClick = () => {
-    trackEvent({ category: "sample-page", action: "click-event" });
-  };
 
   return (
     <>
@@ -156,12 +144,7 @@ const Linter = () => {
               </Radio.Group>
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
-              <Button
-                type="primary"
-                htmlType="submit"
-                onClick={handleOnClick}
-                onSubmit={handleSubmit}
-              >
+              <Button type="primary" htmlType="submit" onClick={handleSubmit}>
                 Validate
               </Button>
             </Form.Item>
