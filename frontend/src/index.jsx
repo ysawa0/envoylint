@@ -28,7 +28,6 @@ ReactDOM.render(
     <MatomoProvider value={instance}>
       <App />
     </MatomoProvider>
-    ,
   </React.StrictMode>,
   document.getElementById("root")
 );
