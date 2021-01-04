@@ -17,6 +17,7 @@ const logo = require("./img/envoy-horizontal-color.svg");
 const App = () => {
   const { trackPageView } = useMatomo();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(() => {
     trackPageView();
   }, []);
