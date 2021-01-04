@@ -84,17 +84,6 @@ const App = () => {
                   limitations. Extremely large configs may reach that.
                 </p>
               </Card>
-              {/* <Card
-                            title="Why run it on AWS Lambda?"
-                            className="aboutcards"
-                            bordered={true}
-                            style={{marginBottom: 16}}
-                            headStyle={{fontSize: "20px"}}
-                        >
-                            <p>
-                                For fun and also for that sweet free 1 million requests a month.
-                            </p>
-                        </Card> */}
               <Card
                 title="Do you save any data?"
                 className="aboutcards"

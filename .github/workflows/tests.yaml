@@ -10,6 +10,8 @@ on:
   pull_request:
     branches: [master, main]
     types: [synchronize, opened, reopened, ready_for_review]
+  push:
+    branches: [master, main]
 
 jobs:
   precommits:
