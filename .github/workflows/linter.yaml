@@ -37,7 +37,7 @@ jobs:
       ################################
       # Run Linter against code base #
       ################################
-      - name: Lint YAML
+      - name: Lint code
         # uses: docker://github/super-linter:v3.14.3
         uses: docker://github/super-linter:v2.2.2
         env:
@@ -45,4 +45,4 @@ jobs:
           DEFAULT_BRANCH: main
           VALIDATE_YAML: true
           VALIDATE_ALL_CODEBASE: false
-          VALIDATE_PYTHON: false
+          VALIDATE_PYTHON: true

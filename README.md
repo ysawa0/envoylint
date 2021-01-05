@@ -4,7 +4,11 @@
 
 # Frontend
 
-Deployed via Netlify
+The frontend is a static React site deployed via Netlify. Netlify is synced to this repo.
+
+The site calls the Lamba backend to do the config validation.
+
+## Run locally:
 
 ```
 cd frontend
@@ -14,13 +18,26 @@ yarn start
 
 # Backend
 
-Deploy via Serverless Framework to AWS Lambda
+Deployed via Serverless Framework to AWS Lambda.
+
+Each Lambda calls an Envoy binary in validate mode to check a config. The binary is stored in a Lambda Layer.
+
+There is a Lambda Layer for each Envoy version.
+
+## Deploy to AWS
 
 ```
 cd backend
 npm install -g serverless
 sls plugin install -n serverless-python-requirements
 sls deploy --stage dev
+```
+
+## How to get Envoy binary for Lambda Layer
+
+```
+docker run envoyproxy/envoy:v1.15.2
+docker cp $(docker ps -q):/usr/local/bin/envoy .
 ```
 
 ## How to build config_load_check_tool for Lambda
@@ -41,11 +58,4 @@ cd envoy; tmux new; ./ci/run_envoy_docker.sh 'tail -f /dev/null'
 # Docker exec into CI container then run
 git clone https://github.com/envoyproxy/envoy.git; cd envoy
 bazel build //test/tools/config_load_check:config_load_check_tool
-```
-
-## How to get Envoy binary for Lambda Layer
-
-```
-docker run envoyproxy/envoy:v1.15.2
-docker cp $(docker ps -q):/usr/local/bin/envoy .
 ```

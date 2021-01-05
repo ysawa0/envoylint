@@ -1,9 +1,14 @@
 repos:
+  - repo: https://github.com/ambv/black
+    rev: 20.8b1
+    hooks:
+      - id: black
+        language_version: python3.8
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0 # Use the ref you want to point at. Run pre-commit autoupdate after py3
     hooks:
-      # - id: check-ast # Simply check whether files parse as valid python.
-      #   files: "jenkins/api"
+      - id: check-ast # Simply check whether files parse as valid python.
+        files: "backend"
       - id: check-yaml
       - id: check-added-large-files # Prevent giant files from being committed. Default 500kB.
       - id: requirements-txt-fixer # Sorts entries in requirements.txt
