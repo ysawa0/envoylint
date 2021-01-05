@@ -4,9 +4,11 @@
 
 # Frontend
 
-The frontend is a static React website deployed via Netlify. Netlify is synced to this repo.
+The frontend is a static React site deployed via Netlify. Netlify is synced to this repo.
 
 The site calls the Lamba backend to do the config validation.
+
+## Run locally:
 
 ```
 cd frontend
@@ -21,6 +23,8 @@ Deployed via Serverless Framework to AWS Lambda.
 Each Lambda calls an Envoy binary in validate mode to check a config. The binary is stored in a Lambda Layer.
 
 There is a Lambda Layer for each Envoy version.
+
+## Deploy to AWS
 
 ```
 cd backend
