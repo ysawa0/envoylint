@@ -23,6 +23,8 @@ const layout = {
   },
 };
 
+const DEFAULT_ENVOY_VER = "v1162";
+
 const Linter = () => {
   const formRef = React.createRef();
   // const radioRef = React.createRef();
@@ -32,7 +34,7 @@ const Linter = () => {
   const [fail, setFail] = useState(false);
   const [load, setLoad] = useState(false);
   const [error, setError] = useState(false);
-  const [apiVer, setApiVer] = useState("v1160");
+  const [apiVer, setApiVer] = useState(DEFAULT_ENVOY_VER);
 
   const handleSubmit = (e) => {
     e.preventDefault();
