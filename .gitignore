@@ -121,6 +121,5 @@ release.sh
 */.coverage
 **/htmlcov
 
-backend/bin/*
-# backend/lib/*
-backend/lint*/*
+backend/bin/
+backend/lib/
