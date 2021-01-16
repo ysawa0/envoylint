@@ -13,91 +13,92 @@ provider:
 
 package:
   exclude:
-    - ./.git/**
-    - ./.idea/**
-    - ./tmp/**
-    - ./bin/**
-    - ./lintamz/**
-    - ./lintmac/**
-    - ./lintubuntu/**
+    - .git/**
+    - .idea/**
+    - bin/**
+    - tmp/**
 
 layers:
   Envoyv1162:
-    path: ./bin/envoy-1.16.2/
+    path: bin/envoy-1.16.2/
     name: envoyv1160
     description: Envoy binary from envoyproxy/envoy-1.16.2
     retain: false
     compatibleRuntimes:
       - go1.x
       - python3.8
-      - python3.7
-      - python3.6
+    package:
+      include:
+        - bin/envoy-1.16.2/**
 
   Envoyv1160:
-    path: ./bin/envoy-1.16.0/
+    path: bin/envoy-1.16.0/
     name: envoyv1160
     description: Envoy binary from envoyproxy/envoy-1.16.0
     retain: false
     compatibleRuntimes:
       - go1.x
       - python3.8
-      - python3.7
-      - python3.6
+    package:
+      include:
+        - bin/envoy-1.16.0/**
 
   Envoyv1152:
-    path: ./bin/envoy-1.15.2/
+    path: bin/envoy-1.15.2/
     name: envoyv1152
     description: Envoy binary from envoyproxy/envoy:v1.15.2
     retain: false
     compatibleRuntimes:
       - go1.x
       - python3.8
-      - python3.7
-      - python3.6
+    package:
+      include:
+        - bin/envoy-1.15.2/**
 
   Envoyv1145:
-    path: ./bin/envoy-1.14.5/
+    path: bin/envoy-1.14.5/
     name: envoyv1145
     description: Envoy binary from envoyproxy/envoy:v1.14.5
     retain: false
     compatibleRuntimes:
       - go1.x
       - python3.8
-      - python3.7
-      - python3.6
+    package:
+      include:
+        - bin/envoy-1.14.5/**
 
   Envoyv1134:
-    path: ./bin/envoy-1.13.4/
+    path: bin/envoy-1.13.4/
     name: envoyv1134
     description: Envoy binary from envoyproxy/envoy:v1.13.4
     retain: false
     compatibleRuntimes:
-      - go1.x
       - python3.8
-      - python3.7
-      - python3.6
+    package:
+      include:
+        - bin/envoy-1.13.4/**
 
   Envoyv1127:
-    path: ./bin/envoy-1.12.7/
+    path: bin/envoy-1.12.7/
     name: envoyv1127
     description: Envoy binary from envoyproxy/envoy:v1.12.7
     retain: false
     compatibleRuntimes:
-      - go1.x
       - python3.8
-      - python3.7
-      - python3.6
+    package:
+      include:
+        - bin/envoy-1.12.7/**
 
   ctclamz:
-    path: ./lintamz/ # required, path to layer contents on disk
+    path: bin/ctcl/lintamz/ # required, path to layer contents on disk
     name: config_load_check_tool_amzlinux # optional, Deployed Lambda layer name
     description: envoy config check tool built on amazon linux 2 # optional, Description to publish to AWS
     retain: false # optional, false by default. If true, layer versions are not deleted as new ones are created
     compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
-      - go1.x
       - python3.8
-      - python3.7
-      - python3.6
+    package:
+      include:
+        - bin/ctcl/lintamz/**
 
   libatomic:
     path: ./lib/ # required, path to layer contents on disk
@@ -105,10 +106,21 @@ layers:
     description: libatomic built on amazon linux # optional, Description to publish to AWS
     retain: false # optional, false by default. If true, laRyer versions are not deleted as new ones are created
     compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
-      - go1.x
       - python3.8
-      - python3.7
-      - python3.6
+    package:
+      include:
+        - ./lib/**
+
+  Envoyv1170:
+    path: bin/envoy-1.17.0/
+    name: envoyv1170
+    description: Envoy binary from envoyproxy/envoy-1.17.0
+    retain: false
+    compatibleRuntimes:
+      - python3.8
+    package:
+      include:
+        - bin/envoy-1.17.0/**
 
 functions:
   envlint:
@@ -200,5 +212,18 @@ functions:
     events:
       - http:
           path: envoyv1127
+          method: post
+          cors: true
+
+  envoyv1170:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1170LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1170
           method: post
           cors: true
