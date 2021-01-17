@@ -27,9 +27,7 @@ def lambda_handler(event, context):
     with open(write_to, "w") as f:
         f.write(conf)
 
-    rp = subprocess.run(
-        [linter, read_from], stdout=subprocess.PIPE, stderr=subprocess.PIPE
-    )
+    rp = subprocess.run([linter, read_from], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     res = {
         "out": rp.stdout.decode(),
         "err": rp.stderr.decode(),
