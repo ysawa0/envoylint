@@ -23,9 +23,7 @@ class APIGatewayEvent:
                 payload = json.loads(event["body"])
             except json.JSONDecodeError as e:
                 print(type(e), e)
-                raise ValueError(
-                    f"JSON validation failed. Invalid JSON most likely, {type(e)}, {e}"
-                )
+                raise ValueError(f"JSON validation failed. Invalid JSON most likely, {type(e)}, {e}")
         else:
             payload = {}
 
@@ -49,9 +47,7 @@ def init_api_event(event: dict) -> APIGatewayEvent:
     return APIGatewayEvent(event)
 
 
-def as_api_gateway_response(
-    body: Union[dict, list, str], status: int, resp_type: str = "json"
-) -> dict:
+def as_api_gateway_response(body: Union[dict, list, str], status: int, resp_type: str = "json") -> dict:
     headers = {
         "Access-Control-Allow-Origin": "*",  # Required for CORS support to work
         "Access-Control-Allow-Credentials": True,  # Required for cookies, authorization headers with HTTPS

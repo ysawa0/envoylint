@@ -1,9 +1,14 @@
 repos:
-  - repo: https://github.com/ambv/black
+  - repo: https://github.com/psf/black
     rev: 20.8b1
     hooks:
       - id: black
+        args: ["--line-length", "120", "--target-version", "py38"]
         language_version: python3.8
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: "v2.2.1"
+    hooks:
+      - id: prettier
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0 # Use the ref you want to point at. Run pre-commit autoupdate after py3
     hooks:
@@ -13,13 +18,8 @@ repos:
       - id: check-added-large-files # Prevent giant files from being committed. Default 500kB.
       - id: requirements-txt-fixer # Sorts entries in requirements.txt
       - id: check-case-conflict # Check for files with names that would conflict on a case-insensitive filesystem like MacOS HFS+ or Windows FAT.
-      - id: trailing-whitespace # Enable later
+      - id: trailing-whitespace
       - id: check-merge-conflict # Check for files that contain merge conflict strings.
-      - id: check-symlinks # Checks for symlinks which do not point to anything.
       - id: check-toml
       - id: check-json
-      - id: end-of-file-fixer
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: "v2.2.1"
-    hooks:
-      - id: prettier
+      - id: end-of-file-fixer # Ensure newline at eof
