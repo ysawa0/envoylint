@@ -49,4 +49,4 @@ jobs:
           DEFAULT_BRANCH: main
           VALIDATE_YAML: true
           VALIDATE_ALL_CODEBASE: false
-          VALIDATE_PYTHON: true
+          VALIDATE_PYTHON: false
