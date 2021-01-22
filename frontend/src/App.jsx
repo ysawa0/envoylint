@@ -32,9 +32,9 @@ const App = () => {
           <Menu.Item key="1" icon={<HomeOutlined />}>
             Envoy Config Linter and Validator Online
           </Menu.Item>
-          <Menu.Item key="2" icon={<GithubOutlined />}>
+          {/* <Menu.Item key="2" icon={<GithubOutlined />}>
             See the Code!
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu>
       </Header>
       <Content style={{ padding: "0 50px" }}>
