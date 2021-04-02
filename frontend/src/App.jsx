@@ -1,12 +1,12 @@
 import React from "react";
-import { Row, Col, Divider } from "antd";
+import { Row, Col, Divider, Link } from "antd";
 import "./App.less";
 import "./main.css";
 import Linter from "./linter";
 
 import { Image, Card, Layout, Menu } from "antd";
-// import { HomeOutlined, GithubOutlined } from "@ant-design/icons";
-import { HomeOutlined } from "@ant-design/icons";
+import { HomeOutlined, GithubOutlined } from "@ant-design/icons";
+// import { HomeOutlined } from "@ant-design/icons";
 import { Tweet } from "react-twitter-widgets";
 
 import { useMatomo } from "@datapunt/matomo-tracker-react";
@@ -33,9 +33,9 @@ const App = () => {
           <Menu.Item key="1" icon={<HomeOutlined />}>
             Envoy Config Linter and Validator Online
           </Menu.Item>
-          {/* <Menu.Item key="2" icon={<GithubOutlined />}>
-            See the Code!
-          </Menu.Item> */}
+          <Menu.Item key="2" icon={<GithubOutlined />}>
+            <Link to="https://github.com/ysawa0/envoylint">See the Code!</Link>
+          </Menu.Item>
         </Menu>
       </Header>
       <Content style={{ padding: "0 50px" }}>
