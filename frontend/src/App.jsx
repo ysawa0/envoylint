@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Divider, Link } from "antd";
+import { Row, Col, Divider } from "antd";
 import "./App.less";
 import "./main.css";
 import Linter from "./linter";
@@ -34,7 +34,7 @@ const App = () => {
             Envoy Config Linter and Validator Online
           </Menu.Item>
           <Menu.Item key="2" icon={<GithubOutlined />}>
-            <Link to="https://github.com/ysawa0/envoylint">See the Code!</Link>
+            <a href="https://github.com/ysawa0/envoylint">See the Code!</a>
           </Menu.Item>
         </Menu>
       </Header>
