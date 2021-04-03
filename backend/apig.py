@@ -23,12 +23,12 @@ class APIGatewayEvent:
         self.payload = payload
         self.debug = payload.get("debug", False)
 
-    def __str__(self):
+    def __str__(self) -> str:
         s = f"APIGatewayEvent: {self.headers}, {self.path}, {self.payload}"
         return s
 
 
-def as_apigateway_event(body):
+def as_apigateway_event(body: dict) -> dict:
     return {"body": json.dumps(body)}
 
 
