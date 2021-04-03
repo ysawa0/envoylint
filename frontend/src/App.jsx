@@ -6,7 +6,6 @@ import Linter from "./linter";
 
 import { Image, Card, Layout, Menu } from "antd";
 import { HomeOutlined, GithubOutlined } from "@ant-design/icons";
-// import { HomeOutlined } from "@ant-design/icons";
 import { Tweet } from "react-twitter-widgets";
 
 import { useMatomo } from "@datapunt/matomo-tracker-react";
