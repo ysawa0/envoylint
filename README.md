@@ -36,8 +36,10 @@ sls deploy --stage dev
 ## How to get Envoy binary for Lambda Layer
 
 ```
-docker run envoyproxy/envoy:v1.15.2
+docker run envoyproxy/envoy:v1.17.1
 docker cp $(docker ps -q):/usr/local/bin/envoy .
+# Convinence script can be used to the same effect:
+# sh get_envoy_binary.sh 1.17.1
 ```
 
 ## How to build config_load_check_tool for Lambda

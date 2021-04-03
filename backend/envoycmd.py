@@ -3,7 +3,6 @@ import subprocess
 import os
 import uuid
 
-from pprintpp import pprint
 
 from apig import init_api_event, as_apigateway_event, as_api_gateway_response
 
@@ -40,6 +39,8 @@ def lambda_handler(event, context):
 
 
 if __name__ == "__main__":
+    from pprint import pprint
+
     with open("tmp/mock.yaml", "r") as f:
         r = f.read()
         e = {"conf": r}

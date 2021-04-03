@@ -23,7 +23,7 @@ const layout = {
   },
 };
 
-const DEFAULT_ENVOY_VER = "v1170";
+const DEFAULT_ENVOY_VER = "v1171";
 
 const Linter = () => {
   const formRef = React.createRef();
@@ -136,6 +136,7 @@ const Linter = () => {
                 onChange={changeAPI}
                 value={apiVer}
               >
+                <Radio.Button value="v1171">v1.17.1</Radio.Button>
                 <Radio.Button value="v1170">v1.17.0</Radio.Button>
                 <Radio.Button value="v1162">v1.16.2</Radio.Button>
                 <Radio.Button value="v1160">v1.16.0</Radio.Button>

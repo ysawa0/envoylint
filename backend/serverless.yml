@@ -122,9 +122,20 @@ layers:
       include:
         - bin/envoy-1.17.0/**
 
+  Envoyv1171:
+    path: bin/envoy-1.17.1/
+    name: envoyv1171
+    description: Envoy binary from envoyproxy/envoy-1.17.1
+    retain: false
+    compatibleRuntimes:
+      - python3.8
+    package:
+      include:
+        - bin/envoy-1.17.1/**
+
 functions:
   envlint:
-    handler: main.lambda_handler
+    handler: clct.lambda_handler
     timeout: 30
     memorySize: 256
     layers:
@@ -225,5 +236,18 @@ functions:
     events:
       - http:
           path: envoyv1170
+          method: post
+          cors: true
+
+  envoyv1171:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1171LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1171
           method: post
           cors: true
