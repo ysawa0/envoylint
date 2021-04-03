@@ -1,12 +1,6 @@
 import json
 from typing import Union
 
-import pendulum
-
-
-def as_apigateway_event(body):
-    return {"body": json.dumps(body)}
-
 
 class APIGatewayEvent:
     def __init__(self, event: dict):
@@ -22,7 +16,6 @@ class APIGatewayEvent:
             try:
                 payload = json.loads(event["body"])
             except json.JSONDecodeError as e:
-                print(type(e), e)
                 raise ValueError(f"JSON validation failed. Invalid JSON most likely, {type(e)}, {e}")
         else:
             payload = {}
@@ -30,16 +23,13 @@ class APIGatewayEvent:
         self.payload = payload
         self.debug = payload.get("debug", False)
 
-        self.resp_ok = {"status": "ok"}
-        self.status_200 = 200
-        self.status_400 = 400
-
-        self.time_now = pendulum.now("America/Los_Angeles")
-        self.time_now_str = self.time_now.to_datetime_string() + " PST"
-
     def __str__(self):
         s = f"APIGatewayEvent: {self.headers}, {self.path}, {self.payload}"
         return s
+
+
+def as_apigateway_event(body):
+    return {"body": json.dumps(body)}
 
 
 def init_api_event(event: dict) -> APIGatewayEvent:
