@@ -1,10 +1,27 @@
+default_language_version:
+  # Force all unspecified python hooks to run python3
+  python: python3
 repos:
+  # isort sorts imports alphabetically, and automatically separates them into sections and by type.
+  - repo: https://github.com/pycqa/isort
+    rev: 5.6.4
+    hooks:
+      - id: isort
+        files: "backend"
+        args: ["--settings-path", "setup.cfg"]
+    # black is an automatic Python code formatter. It gives you speed, determinism, and freedom from pycodestyle nagging about formatting.
   - repo: https://github.com/psf/black
     rev: 20.8b1
     hooks:
       - id: black
-        args: ["--line-length", "120", "--target-version", "py38"]
-        language_version: python3.8
+        files: "backend"
+        args: ["--config", "pyproject.toml"]
+    # flake8 checks code base against PEP8, programming errors and cyclomatic complexity.
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.4
+    hooks:
+      - id: flake8
+        files: "backend"
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: "v2.2.1"
     hooks:
