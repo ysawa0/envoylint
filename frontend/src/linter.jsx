@@ -23,7 +23,17 @@ const layout = {
   },
 };
 
-const DEFAULT_ENVOY_VER = "v1171";
+const DEFAULT_ENVOY_VER = "v1182";
+const SUPPORTED_VERS = [
+  "v1.18.2",
+  "v1.17.1",
+  "v1.17.0",
+  "v1.16.2",
+  "v1.16.0",
+  "v1.14.5",
+  "v1.13.4",
+  "v1.12.7",
+];
 
 const Linter = () => {
   const formRef = React.createRef();
@@ -113,6 +123,15 @@ const Linter = () => {
   };
 
   const { trackEvent } = useMatomo();
+  const verButtons = [];
+  for (let v of SUPPORTED_VERS) {
+    let vv = v.replaceAll(".", "");
+    verButtons.push(
+      <Radio.Button value={vv} key={vv}>
+        {v}
+      </Radio.Button>
+    );
+  }
 
   return (
     <>
@@ -136,14 +155,7 @@ const Linter = () => {
                 onChange={changeAPI}
                 value={apiVer}
               >
-                <Radio.Button value="v1171">v1.17.1</Radio.Button>
-                <Radio.Button value="v1170">v1.17.0</Radio.Button>
-                <Radio.Button value="v1162">v1.16.2</Radio.Button>
-                <Radio.Button value="v1160">v1.16.0</Radio.Button>
-                {/* <Radio.Button value="v1152">v1.15.2</Radio.Button> */}
-                <Radio.Button value="v1145">v1.14.5</Radio.Button>
-                <Radio.Button value="v1134">v1.13.4</Radio.Button>
-                <Radio.Button value="v1127">v1.12.7</Radio.Button>
+                {verButtons}
                 <Radio.Button value="clct">config_load_check_tool</Radio.Button>
               </Radio.Group>
             </Form.Item>
