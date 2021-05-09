@@ -28,7 +28,7 @@ class APIGatewayEvent:
         return s
 
 
-def as_apigateway_event(body: dict) -> dict:
+def apig_event(body: dict) -> dict:
     return {"body": json.dumps(body)}
 
 
@@ -37,7 +37,7 @@ def init_api_event(event: dict) -> APIGatewayEvent:
     return APIGatewayEvent(event)
 
 
-def as_api_gateway_response(body: Union[dict, list, str], status: int, resp_type: str = "json") -> dict:
+def apig_resp(body: Union[dict, list, str], status: int, resp_type: str = "json") -> dict:
     headers = {
         "Access-Control-Allow-Origin": "*",  # Required for CORS support to work
         "Access-Control-Allow-Credentials": True,  # Required for cookies, authorization headers with HTTPS

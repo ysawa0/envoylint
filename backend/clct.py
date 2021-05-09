@@ -3,7 +3,7 @@ import os
 import subprocess
 import uuid
 
-from apig import as_api_gateway_response, as_apigateway_event, init_api_event
+from apig import apig_event, apig_resp, init_api_event
 
 
 def lambda_handler(event, context):
@@ -32,7 +32,7 @@ def lambda_handler(event, context):
         "code": rp.returncode,
     }
     os.remove(write_to)
-    return as_api_gateway_response(res, 200)
+    return apig_resp(res, 200)
 
 
 if __name__ == "__main__":
@@ -42,6 +42,6 @@ if __name__ == "__main__":
         r = f.read()
         e = {"conf": r}
         print(json.dumps(e))
-        x = lambda_handler(as_apigateway_event(e), None)
+        x = lambda_handler(apig_event(e), None)
         print("=============== done ===================")
         pprint(x)

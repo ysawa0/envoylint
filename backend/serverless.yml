@@ -133,6 +133,17 @@ layers:
       include:
         - bin/envoy-1.17.1/**
 
+  Envoyv1182:
+    path: bin/envoy-1.18.2/
+    name: envoyv1182
+    description: Envoy binary from envoyproxy/envoy dockerhub
+    retain: false
+    compatibleRuntimes:
+      - python3.8
+    package:
+      include:
+        - bin/envoy-1.18.2/**
+
 functions:
   envlint:
     handler: clct.lambda_handler
@@ -249,5 +260,18 @@ functions:
     events:
       - http:
           path: envoyv1171
+          method: post
+          cors: true
+
+  envoyv1182:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1182LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1182
           method: post
           cors: true
