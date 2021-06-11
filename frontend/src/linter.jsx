@@ -156,7 +156,7 @@ const Linter = () => {
                 value={apiVer}
               >
                 {verButtons}
-                <Radio.Button value="clct">config_load_check_tool</Radio.Button>
+                {/* <Radio.Button value="clct">config_load_check_tool</Radio.Button> */}
               </Radio.Group>
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
