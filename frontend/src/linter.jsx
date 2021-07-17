@@ -23,8 +23,8 @@ const layout = {
   },
 };
 
-const DEFAULT_ENVOY_VER = "v1182";
 const SUPPORTED_VERS = [
+  "v1.19.0",
   "v1.18.2",
   "v1.17.1",
   "v1.17.0",
@@ -34,6 +34,7 @@ const SUPPORTED_VERS = [
   "v1.13.4",
   "v1.12.7",
 ];
+const DEFAULT_ENVOY_VER = SUPPORTED_VERS[0].replaceAll(".", "");
 
 const Linter = () => {
   const formRef = React.createRef();
