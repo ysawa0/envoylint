@@ -23,8 +23,9 @@ const layout = {
   },
 };
 
-const DEFAULT_ENVOY_VER = "v1182";
+const DEFAULT_ENVOY_VER = "v1.19.0";
 const SUPPORTED_VERS = [
+  "v1.19.0",
   "v1.18.2",
   "v1.17.1",
   "v1.17.0",
@@ -44,7 +45,7 @@ const Linter = () => {
   const [fail, setFail] = useState(false);
   const [load, setLoad] = useState(false);
   const [error, setError] = useState(false);
-  const [apiVer, setApiVer] = useState(DEFAULT_ENVOY_VER);
+  const [apiVer, setApiVer] = useState(DEFAULT_ENVOY_VER.replaceAll(".", ""));
 
   const handleSubmit = (e) => {
     e.preventDefault();
