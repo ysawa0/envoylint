@@ -23,7 +23,6 @@ const layout = {
   },
 };
 
-const DEFAULT_ENVOY_VER = "v1.19.0";
 const SUPPORTED_VERS = [
   "v1.19.0",
   "v1.18.2",
@@ -35,6 +34,7 @@ const SUPPORTED_VERS = [
   "v1.13.4",
   "v1.12.7",
 ];
+const DEFAULT_ENVOY_VER = SUPPORTED_VERS[0].replaceAll(".", "");
 
 const Linter = () => {
   const formRef = React.createRef();
@@ -45,7 +45,7 @@ const Linter = () => {
   const [fail, setFail] = useState(false);
   const [load, setLoad] = useState(false);
   const [error, setError] = useState(false);
-  const [apiVer, setApiVer] = useState(DEFAULT_ENVOY_VER.replaceAll(".", ""));
+  const [apiVer, setApiVer] = useState(DEFAULT_ENVOY_VER);
 
   const handleSubmit = (e) => {
     e.preventDefault();
