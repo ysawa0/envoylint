@@ -38,9 +38,8 @@ const DEFAULT_ENVOY_VER = SUPPORTED_VERS[0].replaceAll(".", "");
 
 const Linter = () => {
   const formRef = React.createRef();
-  // const radioRef = React.createRef();
   const [conf, setConf] = useState(mockConf);
-  const [out, setOut] = useState("");
+  const [output, setOutput] = useState("");
   const [pass, setPass] = useState(false);
   const [fail, setFail] = useState(false);
   const [load, setLoad] = useState(false);
@@ -54,12 +53,8 @@ const Linter = () => {
     setFail(false);
     setError(false);
     const data = { conf: conf };
-    let url = "";
-    if (apiVer === "clct") {
-      url = `${linterBaseUrl}/clct`;
-    } else {
-      url = `${linterBaseUrl}/envoy${apiVer}`;
-    }
+    let url = `${linterBaseUrl}/envoy${apiVer}`;
+
     trackEvent({ category: "lint", action: apiVer });
 
     axios
@@ -106,10 +101,10 @@ const Linter = () => {
           setFail(true);
         }
 
-        setOut(txt.join("\n"));
+        setOutput(txt.join("\n"));
       })
       .catch((res) => {
-        setOut(res.code + "\n" + res.message);
+        setOutput(res.code + "\n" + res.message);
         setError(true);
         setLoad(false);
       });
@@ -157,7 +152,6 @@ const Linter = () => {
                 value={apiVer}
               >
                 {verButtons}
-                {/* <Radio.Button value="clct">config_load_check_tool</Radio.Button> */}
               </Radio.Group>
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
@@ -169,7 +163,7 @@ const Linter = () => {
         </Col>
         <Col className="gutter-row" span={12}>
           <Divider orientation="left">results</Divider>
-          <TextArea rows={30} value={out} />
+          <TextArea rows={30} value={output} />
         </Col>
       </Row>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="centerh">
