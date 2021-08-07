@@ -38,7 +38,6 @@ const DEFAULT_ENVOY_VER = SUPPORTED_VERS[0].replaceAll(".", "");
 
 const Linter = () => {
   const formRef = React.createRef();
-  // const radioRef = React.createRef();
   const [conf, setConf] = useState(mockConf);
   const [output, setOutput] = useState("");
   const [pass, setPass] = useState(false);
@@ -153,7 +152,6 @@ const Linter = () => {
                 value={apiVer}
               >
                 {verButtons}
-                {/* <Radio.Button value="clct">config_load_check_tool</Radio.Button> */}
               </Radio.Group>
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
