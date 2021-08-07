@@ -73,14 +73,6 @@ const App = () => {
                   >
                     validate mode
                   </a>{" "}
-                  {/* or against the{" "}
-                  <a
-                    href={
-                      "https://www.envoyproxy.io/docs/envoy/latest/install/tools/config_load_check_tool"
-                    }
-                  >
-                    config_load_check_tool
-                  </a>{" "} */}
                   and prints the result.
                   <br />
                   There is a 30 second timeout on the linter due to API Gateway
