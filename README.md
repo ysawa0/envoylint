@@ -2,6 +2,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5fb8f73f-4b59-4ac1-8916-7b63e7182aec/deploy-status)](https://app.netlify.com/sites/dazzling-mahavira-26b329/deploys)
 
+**envoylint.com takes an Envoy config and validates it for you.**
+
 # Frontend
 
 The frontend is a static React site deployed via Netlify. Netlify is synced to this repo.
