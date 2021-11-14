@@ -37,4 +37,4 @@ admin:
 `;
 
 export const linterBaseUrl =
-  "https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod";
+  "https://w10hbo299d.execute-api.us-east-1.amazonaws.com/dev";
