@@ -7,6 +7,7 @@ frameworkVersion: "2"
 provider:
   name: aws
   runtime: python3.8
+  # lambdaHashingVersion: 20201221
 
 package:
   exclude:
@@ -15,6 +16,9 @@ package:
     - tmp/**
     - bin/**
 
+########################
+# LAYERS
+########################
 layers:
   libatomic:
     path: ./lib/ # required, path to layer contents on disk
@@ -129,6 +133,9 @@ layers:
       include:
         - bin/envoy-1.20.0/**
 
+########################
+# FUNCTIONS
+########################
 functions:
   envoyv1127:
     handler: envoycmd.lambda_handler
