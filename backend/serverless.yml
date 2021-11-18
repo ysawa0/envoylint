@@ -174,7 +174,6 @@ functions:
           cors: true
 
   envoyv1152:
-    runtime: python3.6
     handler: envoycmd.lambda_handler
     timeout: 30
     memorySize: 256
