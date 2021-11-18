@@ -3,6 +3,7 @@ import { Row, Col, Divider } from "antd";
 import "./App.less";
 import "./main.css";
 import Linter from "./linter";
+import envoyLogo from "./img/envoy-horizontal-color.svg";
 
 import { Image, Card, Layout, Menu } from "antd";
 import { HomeOutlined, GithubOutlined } from "@ant-design/icons";
@@ -11,8 +12,6 @@ import { Tweet } from "react-twitter-widgets";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 
 const { Header, Content, Footer } = Layout;
-
-const envoyLogo = require("./img/envoy-horizontal-color.svg");
 
 const App = () => {
   const { trackPageView } = useMatomo();
