@@ -12,7 +12,7 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 
 const { Header, Content, Footer } = Layout;
 
-const logo = require("./img/envoy-horizontal-color.svg");
+const envoyLogo = require("./img/envoy-horizontal-color.svg");
 
 const App = () => {
   const { trackPageView } = useMatomo();
@@ -131,7 +131,7 @@ const App = () => {
       <Footer style={{ textAlign: "center", backgroundColor: "#505050" }}>
         <Image
           width={200}
-          src={logo}
+          src={envoyLogo}
           preview={false}
           style={{ backgroundColor: "white" }}
         />
