@@ -177,7 +177,6 @@ functions:
           cors: true
 
   envoyv1152:
-    runtime: python3.6
     handler: envoycmd.lambda_handler
     timeout: 30
     memorySize: 256
@@ -187,6 +186,19 @@ functions:
     events:
       - http:
           path: envoyv1152
+          method: post
+          cors: true
+
+  envoyv1162:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1162LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1162
           method: post
           cors: true
 
