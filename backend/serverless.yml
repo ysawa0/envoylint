@@ -133,6 +133,17 @@ layers:
       include:
         - bin/envoy-1.20.0/**
 
+  Envoyv1210:
+    path: bin/envoy-1.21.0/
+    name: envoyv1210
+    description: Envoy binary from envoyproxy/envoy dockerhub
+    retain: false
+    compatibleRuntimes:
+      - python3.8
+    package:
+      include:
+        - bin/envoy-1.21.0/**
+
 ########################
 # FUNCTIONS
 ########################
@@ -251,5 +262,18 @@ functions:
     events:
       - http:
           path: envoyv1200
+          method: post
+          cors: true
+
+  envoyv1210:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1210LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1210
           method: post
           cors: true

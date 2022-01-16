@@ -86,8 +86,8 @@ const App = () => {
                 headStyle={{ fontSize: "20px" }}
               >
                 <p>
-                  No and all sessions run on ephemeral Lambda containers. But
-                  it's best to never send any sensitive data.
+                  No and all sessions run on ephemeral Lambdas. But it's best to
+                  never send any sensitive data.
                 </p>
               </Card>
               <Card
