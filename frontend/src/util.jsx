@@ -38,3 +38,15 @@ admin:
 
 export const linterBaseUrl =
   "https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod";
+
+export const SUPPORTED_VERS = [
+  "v1.21.0",
+  "v1.20.0",
+  "v1.19.0",
+  "v1.18.2",
+  "v1.17.1",
+  "v1.16.2",
+  "v1.14.5",
+  "v1.13.4",
+  "v1.12.7",
+];
