@@ -130,7 +130,7 @@ const Linter = () => {
                 value={conf}
                 onChange={handleChange}
                 defaultValue={mockConf}
-                style={{ color: "red" }}
+                style={{ fontFamily: "monospace" }}
               />
             </Form.Item>
             <Form.Item name="api-ver" label="Validate with">
