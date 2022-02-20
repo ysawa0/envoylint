@@ -153,7 +153,11 @@ const Linter = () => {
         </Col>
         <Col className="gutter-row" span={12}>
           <Divider orientation="left">results</Divider>
-          <TextArea rows={30} value={output} />
+          <TextArea
+            rows={30}
+            value={output}
+            style={{ fontFamily: "monospace" }}
+          />
         </Col>
       </Row>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="centerh">
