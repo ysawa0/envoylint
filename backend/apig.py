@@ -33,7 +33,7 @@ def apig_event(body: dict) -> dict:
 
 
 def init_api_event(event: dict) -> APIGatewayEvent:
-    """ Take API Gateway event from lambda_handler and parse it"""
+    """Take API Gateway event from lambda_handler and parse it"""
     return APIGatewayEvent(event)
 
 
