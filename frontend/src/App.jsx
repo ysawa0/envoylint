@@ -112,8 +112,7 @@ const App = () => {
               >
                 <p>
                   Shoot me a message{" "}
-                  <a href={"https://twitter.com/yukisww"}>@yukisww</a> or yuki
-                  [at] yukisawa . com
+                  <a href={"https://twitter.com/yukisww"}>@yukisww</a>
                 </p>
               </Card>
             </div>
