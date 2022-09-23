@@ -7,7 +7,8 @@ frameworkVersion: "2"
 provider:
   name: aws
   runtime: python3.8
-  # lambdaHashingVersion: 20201221
+  lambdaHashingVersion: 20200924
+  # lambdaHashingVersion: 20201221 # Enable later, new hashing algo
 
 package:
   exclude:
@@ -144,6 +145,28 @@ layers:
       include:
         - bin/envoy-1.21.0/**
 
+  Envoyv1220:
+    path: bin/envoy-1.22.0/
+    name: envoyv1220
+    description: Envoy binary from envoyproxy/envoy dockerhub
+    retain: false
+    compatibleRuntimes:
+      - python3.8
+    package:
+      include:
+        - bin/envoy-1.22.0/**
+
+  Envoyv1231:
+    path: bin/envoy-1.23.1/
+    name: envoyv1231
+    description: Envoy binary from envoyproxy/envoy dockerhub
+    retain: false
+    compatibleRuntimes:
+      - python3.8
+    package:
+      include:
+        - bin/envoy-1.23.1/**
+
 ########################
 # FUNCTIONS
 ########################
@@ -275,5 +298,31 @@ functions:
     events:
       - http:
           path: envoyv1210
+          method: post
+          cors: true
+
+  envoyv1220:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1220LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1220
+          method: post
+          cors: true
+
+  envoyv1231:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1231LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1231
           method: post
           cors: true
