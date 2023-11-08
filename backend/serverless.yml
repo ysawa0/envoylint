@@ -1,21 +1,31 @@
 service: envoylint
 
-plugins:
-  - serverless-python-requirements
+# plugins:
+  # - serverless-python-requirements
 frameworkVersion: "2"
 
 provider:
   name: aws
-  runtime: python3.8
+  runtime: python3.9
   lambdaHashingVersion: 20200924
   # lambdaHashingVersion: 20201221 # Enable later, new hashing algo
 
 package:
-  exclude:
-    - .git/**
-    - .idea/**
-    - tmp/**
-    - bin/**
+  patterns:
+    - '**'
+    - '!lib/**'
+    - '!node_modules/**'
+    - '!.git/**'
+    - '!.idea/**'
+    - '!tmp/**'
+    - '!bin/**'
+
+# package:
+#   exclude:
+#     - .git/**
+#     - .idea/**
+#     - tmp/**
+#     - bin/**
 
 ########################
 # LAYERS
@@ -37,8 +47,6 @@ layers:
     name: envoyv1127
     description: Envoy binary from envoyproxy/envoy:v1.12.7
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.12.7/**
@@ -48,8 +56,6 @@ layers:
     name: envoyv1134
     description: Envoy binary from envoyproxy/envoy:v1.13.4
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.13.4/**
@@ -59,9 +65,6 @@ layers:
     name: envoyv1145
     description: Envoy binary from envoyproxy/envoy:v1.14.5
     retain: false
-    compatibleRuntimes:
-      - go1.x
-      - python3.8
     package:
       include:
         - bin/envoy-1.14.5/**
@@ -71,9 +74,6 @@ layers:
     name: envoyv1152
     description: Envoy binary from envoyproxy/envoy:v1.15.2
     retain: false
-    compatibleRuntimes:
-      - go1.x
-      - python3.8
     package:
       include:
         - bin/envoy-1.15.2/**
@@ -83,9 +83,6 @@ layers:
     name: envoyv1160
     description: Envoy binary from envoyproxy/envoy-1.16.2
     retain: false
-    compatibleRuntimes:
-      - go1.x
-      - python3.8
     package:
       include:
         - bin/envoy-1.16.2/**
@@ -95,8 +92,6 @@ layers:
     name: envoyv1171
     description: Envoy binary from envoyproxy/envoy-1.17.1
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.17.1/**
@@ -106,8 +101,6 @@ layers:
     name: envoyv1182
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.18.2/**
@@ -117,8 +110,6 @@ layers:
     name: envoyv1190
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.19.0/**
@@ -128,8 +119,6 @@ layers:
     name: envoyv1200
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.20.0/**
@@ -139,8 +128,6 @@ layers:
     name: envoyv1210
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.21.0/**
@@ -150,8 +137,6 @@ layers:
     name: envoyv1220
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.22.0/**
@@ -159,13 +144,18 @@ layers:
   Envoyv1231:
     path: bin/envoy-1.23.1/
     name: envoyv1231
-    description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.23.1/**
+
+  Envoyv1261:
+    path: bin/envoy-v1.26.1/
+    name: envoyv1261
+    retain: false
+    package:
+      include:
+        - bin/envoy-1.26.1/**
 
 ########################
 # FUNCTIONS
@@ -324,5 +314,18 @@ functions:
     events:
       - http:
           path: envoyv1231
+          method: post
+          cors: true
+
+  envoyv1261:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1261LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1261
           method: post
           cors: true

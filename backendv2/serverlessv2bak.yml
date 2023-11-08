@@ -1,0 +1,204 @@
+service: envoylint
+
+plugins:
+  - serverless-python-requirements
+  - serverless-layers
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: python3.9
+  # lambdaHashingVersion: 20200924
+  # lambdaHashingVersion: 20201221 # Enable later, new hashing algo
+
+package:
+  patterns:
+    - '**'
+    - '!lib/**'
+    - '!node_modules/**'
+    - '!.git/**'
+    - '!.idea/**'
+    - '!tmp/**'
+    - '!bin/**'
+
+########################
+# LAYERS
+########################
+layers:
+  libatomic:
+    path: ./lib/ # required, path to layer contents on disk
+    name: libatomic # optional, Deployed Lambda layer name
+    description: libatomic built on amazon linux # optional, Description to publish to AWS
+    retain: false # optional, false by default. If true, laRyer versions are not deleted as new ones are created
+    package:
+      patterns:
+        - ./lib/**`
+
+  Envoyv1253:
+    path: bin/envoy-1.25.3/
+    name: envoyv1253
+    description: Envoy binary from envoyproxy/envoy dockerhub
+    retain: false
+    package:
+      patterns:
+        - bin/envoy-1.25.3/**
+
+########################
+# FUNCTIONS
+########################
+functions:
+  envoyv1127:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1127LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1127
+          method: post
+          cors: true
+
+  envoyv1134:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1134LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1134
+          method: post
+          cors: true
+
+  envoyv1145:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1145LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1145
+          method: post
+          cors: true
+
+  envoyv1152:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1152LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1152
+          method: post
+          cors: true
+
+  envoyv1162:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1162LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1162
+          method: post
+          cors: true
+
+  envoyv1171:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1171LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1171
+          method: post
+          cors: true
+
+  envoyv1182:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1182LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1182
+          method: post
+          cors: true
+
+  envoyv1190:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1190LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1190
+          method: post
+          cors: true
+
+  envoyv1200:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1200LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1200
+          method: post
+          cors: true
+
+  envoyv1210:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1210LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1210
+          method: post
+          cors: true
+
+  envoyv1220:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1220LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1220
+          method: post
+          cors: true
+
+  envoyv1231:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1231LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1231
+          method: post
+          cors: true

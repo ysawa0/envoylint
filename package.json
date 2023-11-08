@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "serverless": "^3.29.0"
+  },
+  "devDependencies": {
+    "serverless-layers": "^2.6.1"
+  }
+}

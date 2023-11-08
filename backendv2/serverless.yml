@@ -1,0 +1,63 @@
+service: envoylintv2
+
+# plugins:
+  # - serverless-python-requirements
+  # - serverless-layers
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: python3.9
+  deploymentBucket:
+    name: envoylintv2-deployment-bucket
+  # lambdaHashingVersion: 20200924
+  # lambdaHashingVersion: 20201221 # Enable later, new hashing algo
+
+package:
+  patterns:
+    - '**'
+    - '!lib/**'
+    - '!node_modules/**'
+    - '!.git/**'
+    - '!.idea/**'
+    - '!tmp/**'
+    - '!bin/**'
+
+########################
+# LAYERS
+########################
+layers:
+  libatomic:
+    path: ./lib/ # required, path to layer contents on disk
+    name: libatomic # optional, Deployed Lambda layer name
+    description: libatomic built on amazon linux # optional, Description to publish to AWS
+    retain: false # optional, false by default. If true, laRyer versions are not deleted as new ones are created
+    package:
+      patterns:
+        - ./lib/**
+
+  envoyone:
+    path: ./bin/
+    name: envoyone
+    description: envoy
+    retain: false
+    package:
+      patterns:
+        - ./bin/**
+
+########################
+# FUNCTIONS
+########################
+functions:
+  envoy:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: EnvoyoneLambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoy
+          method: post
+          cors: true

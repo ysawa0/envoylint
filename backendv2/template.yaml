@@ -1,0 +1,76 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS SAM template for Envoy Lint
+
+Globals:
+  Function:
+    Runtime: python3.9
+    Timeout: 30
+    MemorySize: 256
+
+Resources:
+  LibatomicLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: libatomic
+      Description: libatomic built on amazon linux
+      ContentUri: lib/
+      CompatibleRuntimes:
+        - python3.10
+
+  Envoyv1220Layer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: envoyv1220
+      Description: Envoy binary from envoyproxy/envoy dockerhub
+      ContentUri: bin/envoy-1.22.0/
+      CompatibleRuntimes:
+        - python3.10
+
+  Envoyv1231Layer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: envoyv1231
+      Description: Envoy binary from envoyproxy/envoy dockerhub
+      ContentUri: bin/envoy-1.23.1/
+      CompatibleRuntimes:
+        - python3.10
+
+  Envoyv1254Layer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: envoyv1253
+      Description: Envoy binary from envoyproxy/envoy dockerhub
+      ContentUri: bin/envoy-1.25.4/
+      CompatibleRuntimes:
+        - python3.10
+
+  Envoyv1220Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: envoycmd.lambda_handler
+      CodeUri: src/
+      Layers:
+        - !Ref LibatomicLayer
+        - !Ref Envoyv1220Layer
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /envoyv1220
+            Method: post
+
+  Envoyv1231Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: envoycmd.lambda_handler
+      CodeUri: src/
+      Layers:
+        - !Ref LibatomicLayer
+        - !Ref Envoyv1231Layer
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /envoyv1231
+            Method: post
