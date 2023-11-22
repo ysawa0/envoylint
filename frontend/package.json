@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-transform-async-generator-functions": "^7.23.4",
     "@craco/craco": "^7.1.0",
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "@testing-library/jest-dom": "^6.1.4",
