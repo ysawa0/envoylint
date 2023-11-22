@@ -6,7 +6,7 @@ frameworkVersion: "2"
 
 provider:
   name: aws
-  runtime: python3.8
+  runtime: python3.10
   lambdaHashingVersion: 20200924
   # lambdaHashingVersion: 20201221 # Enable later, new hashing algo
 
@@ -27,8 +27,6 @@ layers:
     name: libatomic # optional, Deployed Lambda layer name
     description: libatomic built on amazon linux # optional, Description to publish to AWS
     retain: false # optional, false by default. If true, laRyer versions are not deleted as new ones are created
-    compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
-      - python3.8
     package:
       include:
         - ./lib/**
@@ -38,8 +36,6 @@ layers:
     name: envoyv1127
     description: Envoy binary from envoyproxy/envoy:v1.12.7
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.12.7/**
@@ -49,8 +45,6 @@ layers:
     name: envoyv1134
     description: Envoy binary from envoyproxy/envoy:v1.13.4
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.13.4/**
@@ -60,9 +54,6 @@ layers:
     name: envoyv1145
     description: Envoy binary from envoyproxy/envoy:v1.14.5
     retain: false
-    compatibleRuntimes:
-      - go1.x
-      - python3.8
     package:
       include:
         - bin/envoy-1.14.5/**
@@ -72,9 +63,6 @@ layers:
     name: envoyv1152
     description: Envoy binary from envoyproxy/envoy:v1.15.2
     retain: false
-    compatibleRuntimes:
-      - go1.x
-      - python3.8
     package:
       include:
         - bin/envoy-1.15.2/**
@@ -84,9 +72,6 @@ layers:
     name: envoyv1160
     description: Envoy binary from envoyproxy/envoy-1.16.2
     retain: false
-    compatibleRuntimes:
-      - go1.x
-      - python3.8
     package:
       include:
         - bin/envoy-1.16.2/**
@@ -96,8 +81,6 @@ layers:
     name: envoyv1171
     description: Envoy binary from envoyproxy/envoy-1.17.1
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.17.1/**
@@ -107,8 +90,6 @@ layers:
     name: envoyv1182
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.18.2/**
@@ -118,8 +99,6 @@ layers:
     name: envoyv1190
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.19.0/**
@@ -129,8 +108,6 @@ layers:
     name: envoyv1200
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.20.0/**
@@ -140,8 +117,6 @@ layers:
     name: envoyv1210
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.21.0/**
@@ -151,8 +126,6 @@ layers:
     name: envoyv1220
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.22.0/**
@@ -162,19 +135,24 @@ layers:
     name: envoyv1231
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.23.1/**
+
+  Envoyv1272:
+    path: bin/envoy-1.27.2/
+    name: envoyv1272
+    description: Envoy binary from envoyproxy/envoy dockerhub
+    retain: false
+    package:
+      include:
+        - bin/envoy-1.27.2/**
 
   Envoyv1280:
     path: bin/envoy-1.28.0/
     name: envoyv1280
     description: Envoy binary from envoyproxy/envoy dockerhub
     retain: false
-    compatibleRuntimes:
-      - python3.8
     package:
       include:
         - bin/envoy-1.28.0/**
@@ -336,6 +314,19 @@ functions:
     events:
       - http:
           path: envoyv1231
+          method: post
+          cors: true
+
+  envoyv1272:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1272LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1272
           method: post
           cors: true
 

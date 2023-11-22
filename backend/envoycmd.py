@@ -7,6 +7,10 @@ from apig import apig_event, apig_resp, init_api_event
 
 
 def lambda_handler(event, context):
+    from pprint import pprint
+
+    pprint(os.listdir("/lib64"))
+    pprint(os.listdir("/lib"))
     event = init_api_event(event)
 
     u = str(uuid.uuid4())

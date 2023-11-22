@@ -42,6 +42,7 @@ export const linterBaseUrl =
 
 export const SUPPORTED_VERS = [
   "v1.28.0",
+  "v1.27.2",
   "v1.23.1",
   "v1.22.0",
   "v1.21.0",
