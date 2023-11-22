@@ -14,12 +14,13 @@
     "react-twitter-widgets": "^1.11.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.23.4",
+
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-async-generator-functions": "^7.23.4"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
+    "start": "yarn start",
+    "build": "yarn build",
     "test": "craco test",
     "eject": "craco eject"
   },
