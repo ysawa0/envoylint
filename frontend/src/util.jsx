@@ -37,9 +37,11 @@ admin:
 `;
 
 export const linterBaseUrl =
-  "https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod";
+  "https://wco1jydmml.execute-api.us-east-1.amazonaws.com/dev";
+  // "https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod";
 
 export const SUPPORTED_VERS = [
+  "v1.28.0",
   "v1.23.1",
   "v1.22.0",
   "v1.21.0",

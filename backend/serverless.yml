@@ -16,6 +16,7 @@ package:
     - .idea/**
     - tmp/**
     - bin/**
+    - node_modules/**
 
 ########################
 # LAYERS
@@ -166,6 +167,17 @@ layers:
     package:
       include:
         - bin/envoy-1.23.1/**
+
+  Envoyv1280:
+    path: bin/envoy-1.28.0/
+    name: envoyv1280
+    description: Envoy binary from envoyproxy/envoy dockerhub
+    retain: false
+    compatibleRuntimes:
+      - python3.8
+    package:
+      include:
+        - bin/envoy-1.28.0/**
 
 ########################
 # FUNCTIONS
@@ -324,5 +336,18 @@ functions:
     events:
       - http:
           path: envoyv1231
+          method: post
+          cors: true
+
+  envoyv1280:
+    handler: envoycmd.lambda_handler
+    timeout: 30
+    memorySize: 256
+    layers:
+      - { Ref: Envoyv1280LambdaLayer }
+      - { Ref: LibatomicLambdaLayer }
+    events:
+      - http:
+          path: envoyv1280
           method: post
           cors: true
