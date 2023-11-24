@@ -64,7 +64,7 @@ const App = () => {
                 headStyle={{ fontSize: "20px" }}
               >
                 <p>
-                  It sends the config to a Lambda running Envoy in{" "}
+                  It validates a config via the Envoy{" "}
                   <a
                     href={
                       "https://www.envoyproxy.io/docs/envoy/latest/operations/cli#cmdoption-mode"
@@ -72,7 +72,7 @@ const App = () => {
                   >
                     validate mode
                   </a>{" "}
-                  and prints the result.
+                  and returns the result.
                   <br />
                   There is a 30 second timeout on the linter due to API Gateway
                   limitations. Extremely large configs may reach that.
@@ -86,7 +86,7 @@ const App = () => {
                 headStyle={{ fontSize: "20px" }}
               >
                 <p>
-                  No and all sessions run on ephemeral Lambdas. But it's best to
+                  No and all sessions run on ephemeral sessions. But it's best to
                   never send any sensitive data.
                 </p>
               </Card>
