@@ -64,9 +64,7 @@ static_resources:
                 port_value: 8080
 `;
 
-export const linterBaseUrl =
-  "https://wco1jydmml.execute-api.us-east-1.amazonaws.com/dev";
-  // "https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod";
+export const linterBaseUrl = "https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod";
 
 export const SUPPORTED_VERS = [
   "v1.28.0",
