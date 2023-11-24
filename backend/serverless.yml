@@ -6,9 +6,21 @@ frameworkVersion: "2"
 
 provider:
   name: aws
-  runtime: python3.10
+  # runtime: python3.10
+  runtime: python3.11
   lambdaHashingVersion: 20200924
   # lambdaHashingVersion: 20201221 # Enable later, new hashing algo
+  ecr:
+    scanOnPush: false
+    images:
+      envoylintbase:
+        path: ./
+        file: Dockerfile
+        platform: linux/amd64
+        # buildArgs:
+        #   STAGE: ${opt:stage}
+        # cacheFrom:
+        #   - my-image:latest
 
 package:
   exclude:
@@ -17,6 +29,8 @@ package:
     - tmp/**
     - bin/**
     - node_modules/**
+    - package-lock.json
+    - package.json
 
 ########################
 # LAYERS
@@ -139,30 +153,30 @@ layers:
       include:
         - bin/envoy-1.23.1/**
 
-  Envoyv1272:
-    path: bin/envoy-1.27.2/
-    name: envoyv1272
-    description: Envoy binary from envoyproxy/envoy dockerhub
-    retain: false
-    package:
-      include:
-        - bin/envoy-1.27.2/**
+  # Envoyv1272:
+  #   path: bin/envoy-1.27.2/
+  #   name: envoyv1272
+  #   description: Envoy binary from envoyproxy/envoy dockerhub
+  #   retain: false
+  #   package:
+  #     include:
+  #       - bin/envoy-1.27.2/**
 
-  Envoyv1280:
-    path: bin/envoy-1.28.0/
-    name: envoyv1280
-    description: Envoy binary from envoyproxy/envoy dockerhub
-    retain: false
-    package:
-      include:
-        - bin/envoy-1.28.0/**
+  # Envoyv1280:
+  #   path: bin/envoy-1.28.0/
+  #   name: envoyv1280
+  #   description: Envoy binary from envoyproxy/envoy dockerhub
+  #   retain: false
+  #   package:
+  #     include:
+  #       - bin/envoy-1.28.0/**
 
 ########################
 # FUNCTIONS
 ########################
 functions:
   envoyv1127:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -175,7 +189,7 @@ functions:
           cors: true
 
   envoyv1134:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -188,7 +202,7 @@ functions:
           cors: true
 
   envoyv1145:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -201,7 +215,7 @@ functions:
           cors: true
 
   envoyv1152:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -214,7 +228,7 @@ functions:
           cors: true
 
   envoyv1162:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -227,7 +241,7 @@ functions:
           cors: true
 
   envoyv1171:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -240,7 +254,7 @@ functions:
           cors: true
 
   envoyv1182:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -253,7 +267,7 @@ functions:
           cors: true
 
   envoyv1190:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -266,7 +280,7 @@ functions:
           cors: true
 
   envoyv1200:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -279,7 +293,7 @@ functions:
           cors: true
 
   envoyv1210:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -292,7 +306,7 @@ functions:
           cors: true
 
   envoyv1220:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -305,7 +319,7 @@ functions:
           cors: true
 
   envoyv1231:
-    handler: envoycmd.lambda_handler
+    handler: main.handler
     timeout: 30
     memorySize: 256
     layers:
@@ -317,26 +331,28 @@ functions:
           method: post
           cors: true
 
-  envoyv1272:
-    handler: envoycmd.lambda_handler
-    timeout: 30
-    memorySize: 256
-    layers:
-      - { Ref: Envoyv1272LambdaLayer }
-      - { Ref: LibatomicLambdaLayer }
-    events:
-      - http:
-          path: envoyv1272
-          method: post
-          cors: true
+  # envoyv1272:
+  #   handler: main.handler
+  #   timeout: 30
+  #   memorySize: 256
+  #   layers:
+  #     - { Ref: Envoyv1272LambdaLayer }
+  #     - { Ref: LibatomicLambdaLayer }
+  #   events:
+  #     - http:
+  #         path: envoyv1272
+  #         method: post
+  #         cors: true
 
-  envoyv1280:
-    handler: envoycmd.lambda_handler
+  envoyv1280d:
+    # handler: main.handler
     timeout: 30
     memorySize: 256
-    layers:
-      - { Ref: Envoyv1280LambdaLayer }
-      - { Ref: LibatomicLambdaLayer }
+    image:
+      name: envoylintbase
+    # layers:
+    #   - { Ref: Envoyv1280LambdaLayer }
+    #   - { Ref: LibatomicLambdaLayer }
     events:
       - http:
           path: envoyv1280
