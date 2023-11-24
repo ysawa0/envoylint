@@ -74,8 +74,6 @@ const App = () => {
                   </a>{" "}
                   and returns the result.
                   <br />
-                  There is a 30 second timeout on the linter due to API Gateway
-                  limitations. Extremely large configs may reach that.
                 </p>
               </Card>
               <Card
