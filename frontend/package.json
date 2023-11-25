@@ -3,22 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^6.4.0",
+    "@craco/craco": "^7.1.0",
     "@datapunt/matomo-tracker-react": "^0.5.1",
-    "@testing-library/jest-dom": "^5.15.0",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "antd": "^4.6.6",
-    "axios": "^0.24.0",
-    "craco-less": "^1.17.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "react-twitter-widgets": "^1.9.5"
+    "antd": "^5.11.1",
+    "axios": "^1.6.1",
+    "craco-less": "^3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "CI='' craco build",
     "test": "craco test",
     "eject": "craco eject"
   },

@@ -2,16 +2,35 @@ import React from "react";
 import { Row, Col, Divider } from "antd";
 import "./App.less";
 import "./main.css";
+import './tweet.css'; // Make sure to create this CSS file
+
 import Linter from "./linter";
 import envoyLogo from "./img/envoy-horizontal-color.svg";
 
 import { Image, Card, Layout, Menu } from "antd";
 import { HomeOutlined, GithubOutlined } from "@ant-design/icons";
-import { Tweet } from "react-twitter-widgets";
 
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 
 const { Header, Content, Footer } = Layout;
+const XPost = () => {
+  return (
+    <a
+      href="https://x.com/kelseyhightower/status/1306060212244111360?s=20"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div className="tweet">
+        <p className="username">@kelseyhightower</p>
+        <p className="content">
+          The hardest problem in computer science is configuring Envoy using a
+          config file.
+        </p>
+        <p className="time">7:39 PM · Sep 15, 2020</p>
+      </div>
+    </a>
+  );
+};
 
 const App = () => {
   const { trackPageView } = useMatomo();
@@ -54,7 +73,7 @@ const App = () => {
                   <a href={"https://www.envoyproxy.io/"}>Envoy</a> config and
                   validates it for you.
                 </p>
-                <Tweet tweetId="1306060212244111360" />
+                <XPost />
               </Card>
               <Card
                 title="How does it work?"
@@ -64,7 +83,7 @@ const App = () => {
                 headStyle={{ fontSize: "20px" }}
               >
                 <p>
-                  It sends the config to a Lambda running Envoy in{" "}
+                  It validates a config via the Envoy{" "}
                   <a
                     href={
                       "https://www.envoyproxy.io/docs/envoy/latest/operations/cli#cmdoption-mode"
@@ -72,10 +91,8 @@ const App = () => {
                   >
                     validate mode
                   </a>{" "}
-                  and prints the result.
+                  and returns the result.
                   <br />
-                  There is a 30 second timeout on the linter due to API Gateway
-                  limitations. Extremely large configs may reach that.
                 </p>
               </Card>
               <Card
@@ -86,8 +103,8 @@ const App = () => {
                 headStyle={{ fontSize: "20px" }}
               >
                 <p>
-                  No and all sessions run on ephemeral Lambdas. But it's best to
-                  never send any sensitive data.
+                  No and all sessions are ephemeral. But it's best to never send
+                  any sensitive data.
                 </p>
               </Card>
               <Card
