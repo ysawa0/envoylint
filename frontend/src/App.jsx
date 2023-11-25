@@ -5,7 +5,7 @@ import './tweet.css';
 import Linter from "./linter";
 import envoyLogo from "./img/envoy-horizontal-color.svg";
 
-import {React, useState} from "react";
+import {React } from "react";
 import { Image, Card, Layout, Menu, ConfigProvider, theme } from "antd";
 import { Row, Col, Divider } from "antd";
 
