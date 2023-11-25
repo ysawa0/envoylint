@@ -9,7 +9,6 @@ import envoyLogo from "./img/envoy-horizontal-color.svg";
 
 import { Image, Card, Layout, Menu } from "antd";
 import { HomeOutlined, GithubOutlined } from "@ant-design/icons";
-import { Tweet } from "react-twitter-widgets";
 
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 
