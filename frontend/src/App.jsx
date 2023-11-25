@@ -2,6 +2,8 @@ import React from "react";
 import { Row, Col, Divider } from "antd";
 import "./App.less";
 import "./main.css";
+import './tweet.css'; // Make sure to create this CSS file
+
 import Linter from "./linter";
 import envoyLogo from "./img/envoy-horizontal-color.svg";
 
@@ -12,6 +14,24 @@ import { Tweet } from "react-twitter-widgets";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 
 const { Header, Content, Footer } = Layout;
+const XPost = () => {
+  return (
+    <a
+      href="https://x.com/kelseyhightower/status/1306060212244111360?s=20"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div className="tweet">
+        <p className="username">@kelseyhightower</p>
+        <p className="content">
+          The hardest problem in computer science is configuring Envoy using a
+          config file.
+        </p>
+        <p className="time">7:39 PM · Sep 15, 2020</p>
+      </div>
+    </a>
+  );
+};
 
 const App = () => {
   const { trackPageView } = useMatomo();
@@ -54,7 +74,7 @@ const App = () => {
                   <a href={"https://www.envoyproxy.io/"}>Envoy</a> config and
                   validates it for you.
                 </p>
-                <Tweet tweetId="1306060212244111360" />
+                <XPost />
               </Card>
               <Card
                 title="How does it work?"
@@ -84,8 +104,8 @@ const App = () => {
                 headStyle={{ fontSize: "20px" }}
               >
                 <p>
-                  No and all sessions are ephemeral. But it's best to
-                  never send any sensitive data.
+                  No and all sessions are ephemeral. But it's best to never send
+                  any sensitive data.
                 </p>
               </Card>
               <Card
