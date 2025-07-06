@@ -191,3 +191,5 @@ tmp*
 .serverless
 .vscode
 backend/bin
+
+cdk.out

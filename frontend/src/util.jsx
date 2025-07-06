@@ -64,9 +64,17 @@ static_resources:
                 port_value: 8080
 `;
 
+// Backend v1 (old) - uses versioned endpoints
 export const linterBaseUrl = "https://w10hbo299d.execute-api.us-east-1.amazonaws.com/prod";
 
+// Backend v2 (new) - uses /validate/{version} endpoint
+export const linterBaseUrlV2 = "https://h8sb10yby3.execute-api.us-east-1.amazonaws.com/prod";
+
 export const SUPPORTED_VERS = [
+  // Backend v2 (newer versions)
+  "v1.34.1",
+  "v1.34.0",
+  // Backend v1 (older versions)
   "v1.28.0",
   // "v1.27.2",
   "v1.23.1",
@@ -81,3 +89,6 @@ export const SUPPORTED_VERS = [
   "v1.13.4",
   "v1.12.7",
 ];
+
+// Versions supported by backend v2
+export const V2_VERSIONS = ["v1.34.1", "v1.34.0"];
