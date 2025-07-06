@@ -1,0 +1,10 @@
+[project]
+name = "envoylint_backendv2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aws-cdk-lib>=2.204.0",
+    "constructs>=10.4.2",
+]
