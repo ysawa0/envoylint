@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^6.0.0",
     "@craco/craco": "^7.1.0",
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "antd": "^5.11.1",
