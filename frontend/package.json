@@ -13,7 +13,9 @@
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/core": "^7.28.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "typescript": "^5.8.3"
   },
   "scripts": {
     "start": "craco start",
