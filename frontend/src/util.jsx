@@ -73,7 +73,6 @@ export const linterBaseUrlV2 = "https://h8sb10yby3.execute-api.us-east-1.amazona
 export const SUPPORTED_VERS = [
   // Backend v2 (newer versions)
   "v1.34.1",
-  "v1.34.0",
   // Backend v1 (older versions)
   "v1.28.0",
   // "v1.27.2",
@@ -91,4 +90,4 @@ export const SUPPORTED_VERS = [
 ];
 
 // Versions supported by backend v2
-export const V2_VERSIONS = ["v1.34.1", "v1.34.0"];
+export const V2_VERSIONS = ["v1.34.1"];

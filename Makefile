@@ -23,3 +23,18 @@ endif
 .PHONY: reqtxt
 reqtxt:
 	poetry export -f requirements.txt --output requirements.txt --without-hashes
+
+.PHONY: dev-v3
+dev-v3:
+	@echo "Starting Cloudflare container development..."
+	cd backendv3 && wrangler dev
+
+.PHONY: deploy-v3
+deploy-v3:
+	@echo "Deploying to Cloudflare..."
+	cd backendv3 && wrangler deploy
+
+.PHONY: build-v3
+build-v3:
+	@echo "Building container..."
+	cd backendv3 && docker build -t envoylint-v3 .

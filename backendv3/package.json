@@ -1,0 +1,21 @@
+{
+  "name": "envoylint-v3",
+  "version": "1.0.0",
+  "description": "Envoy configuration validator using Cloudflare Containers",
+  "main": "worker.js",
+  "scripts": {
+    "test": "python -m pytest tests/"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "keywords": [
+    "envoy",
+    "validation",
+    "cloudflare",
+    "containers",
+    "edge-computing"
+  ],
+  "author": "",
+  "license": "MIT"
+}

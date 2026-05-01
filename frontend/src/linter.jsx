@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
 
-import { mockConf, linterBaseUrl, SUPPORTED_VERS } from "./util";
+import { mockConf, linterBaseUrl, linterBaseUrlV2, SUPPORTED_VERS, V2_VERSIONS } from "./util";
 
 const { TextArea } = Input;
 const layout = {
@@ -42,7 +42,19 @@ const Linter = () => {
     setFail(false);
     setError(false);
     const data = { conf: conf };
-    let url = `${linterBaseUrl}/envoy${apiVer}`;
+    
+    // Determine which backend to use based on version
+    const version = apiVer.replace(/^v/, ""); // Remove 'v' prefix for v2 API
+    const isV2Version = V2_VERSIONS.includes(`v${version}`);
+    
+    let url;
+    if (isV2Version) {
+      // Use backend v2 with /validate/{version} endpoint
+      url = `${linterBaseUrlV2}/validate/${version}`;
+    } else {
+      // Use backend v1 with /envoy{version} endpoint
+      url = `${linterBaseUrl}/envoy${apiVer}`;
+    }
 
     trackEvent({ category: "lint", action: apiVer });
 

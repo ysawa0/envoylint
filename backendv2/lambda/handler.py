@@ -100,18 +100,27 @@ def validate(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             "body": json.dumps(response),
         }
 
-    except subprocess.TimeoutExpired:
+    except subprocess.TimeoutExpired as e:
         return {
             "statusCode": 500,
             "headers": {"Access-Control-Allow-Origin": "*", "Content-Type": "application/json"},
-            "body": json.dumps({"error": "Validation timed out"}),
+            "body": json.dumps({
+                "error": "Validation timed out",
+                "exception_type": "TimeoutExpired",
+                "exception_details": str(e),
+                "timeout_seconds": 25
+            }),
         }
     except Exception as e:
-        print(f"Error: {str(e)}")
+        import traceback
         return {
             "statusCode": 500,
             "headers": {"Access-Control-Allow-Origin": "*", "Content-Type": "application/json"},
-            "body": json.dumps({"error": f"Internal server error: {str(e)}"}),
+            "body": json.dumps({
+                "error": str(e),
+                "exception_type": type(e).__name__,
+                "traceback": traceback.format_exc()
+            }),
         }
 
 
@@ -129,6 +138,11 @@ def download_envoy_binary(version: str, download_url: str) -> str:
     print(f"Downloading Envoy {version} from {download_url}")
 
     try:
+        # Set LD_LIBRARY_PATH to use bundled glibc libraries
+        # This fixes the GLIBC version compatibility issue
+        current_ld_path = os.environ.get('LD_LIBRARY_PATH', '')
+        os.environ['LD_LIBRARY_PATH'] = f"/opt/lib64:{current_ld_path}"
+        
         # Download binary using urllib (no external dependencies)
         urllib.request.urlretrieve(download_url, binary_path)
 
@@ -140,7 +154,8 @@ def download_envoy_binary(version: str, download_url: str) -> str:
 
     except Exception as e:
         print(f"Failed to download Envoy {version}: {str(e)}")
-        raise Exception(f"Failed to download Envoy binary: {str(e)}")
+        # Re-raise the original exception with full details
+        raise e
 
 
 # For local testing
