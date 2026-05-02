@@ -1,0 +1,18 @@
+extends: default
+
+ignore: |
+  test123/
+
+rules:
+  line-length: disable
+  indentation:
+    spaces: 2
+    indent-sequences: true
+    check-multi-line-strings: false
+  document-start:
+    ignore: |
+      *
+  empty-lines:
+    ignore: |
+      *
+  braces: { min-spaces-inside: 1, max-spaces-inside: 3 }

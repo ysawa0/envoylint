@@ -1,0 +1,11 @@
+{
+  "name": "envoylint",
+  "description": "",
+  "version": "0.1.0",
+  "devDependencies": {
+    "serverless-python-requirements": "^6.0.0"
+  },
+  "dependencies": {
+    "serverless": "^2.72.4"
+  }
+}
